@@ -1,0 +1,30 @@
+\ProvidesPackage{beamerthemetof}[2007/10/05]
+
+% Beamer theme by Christophe Garion
+%
+% (strongly) based on the progressbar theme bySylvain Bouveret
+% <sylvain[dot]bouveret[aT]cert[DoT]fr> feb. 2007 version 0.31 
+%
+% based on the LaTeX-Beamer package :
+% Copyright 2003 by Till Tantau <tantau@users.sourceforge.net>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+
+\RequirePackage{tikz}
+
+
+\usecolortheme{tof}
+\useinnertheme{tof}
+\usefonttheme{tof}
+\useoutertheme{tof}
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{navigation symbols}{}
+
+\AtBeginDocument{%
+  \typeout{..................................................................}
+  \typeout{You are using the tof beamer theme (Christophe G.)}
+  \typeout{Version: Oct. 2007.}
+  \typeout{..................................................................}
+}
