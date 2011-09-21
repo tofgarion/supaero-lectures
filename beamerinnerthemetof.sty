@@ -1,6 +1,5 @@
 \ProvidesPackage{beamerinnerthemetof}[2007/10/05]
 
-
 % Beamer theme by Christophe Garion
 %
 % (strongly) based on the progressbar theme bySylvain Bouveret
@@ -13,8 +12,18 @@
 % of the GNU Public License, version 2.
 
 \RequirePackage{tikz}
+\RequirePackage{ifthen}
 
 \useinnertheme{rounded}
+
+% This piece of code is just to make the code Babel-compliant with every
+% language.
+% It comes from:
+% http://forum.mathematex.net/latex-f6/beamer-et-shorthandoff-t3851.html
+\makeatletter
+\newboolean{@twopt} \setboolean{@twopt}{false}
+\newcommand*{\twoptoff}{\ifnum \catcode`\;=13 \catcode`\;=12 \setboolean{@twopt}{true} \fi}
+\newcommand*{\twopton}{\if@twopt \catcode`\;=13 \setboolean{@twopt}{false}  \fi}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -35,6 +44,57 @@
     \draw[draw=fg!35!bg](0.3,0) -- (0.3,0.12) -- (0.4,0.12);
   \end{tikzpicture}
 }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Blocks
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newbox\tof@blockbox
+\newdimen\tof@boxheight
+\newdimen\tof@boxwidth
+
+\newenvironment<>{codeblock}[1]{%
+  \begin{actionenv}#2%
+    \def\insertblocktitle{#1}%
+    \par%
+    \usebeamertemplate{codeblock begin}}
+  {\par%
+    \usebeamertemplate{codeblock end}%
+  \end{actionenv}}
+
+\defbeamertemplate*{codeblock begin}{tof theme}
+  {
+    \setbox\tof@blockbox=\hbox to
+    0.95\textwidth\bgroup\vbox\bgroup\vskip-0.25\baselineskip\raggedright\begin{minipage}{0.95\textwidth}
+      \ifx\insertblocktitle\@empty\else{\usebeamerfont{block
+          title}\usebeamercolor[fg]{block
+          title} {\hfill {\tikz\node[fill=bg!40!black,text=white] {\tt \insertblocktitle};}}}\\[-0.3cm]% Just to be "babel-safe"
+      \fi\usebeamerfont{block body}\ifx\insertblocktitle\@empty\else\global\let\itemize=\tof@itemize\fi %\par
+  }
+\defbeamertemplate*{codeblock end}{tof theme}
+  {
+    \vphantom{y}
+    \global\let\itemize=\tof@tempitemize\end{minipage}\vskip-0.25\baselineskip\egroup\egroup
+    \tof@boxwidth=\wd\tof@blockbox
+    \advance\tof@boxwidth by 0.5\baselineskip
+    \tof@boxheight=\ht\tof@blockbox
+    \advance\tof@boxheight by \dp\tof@blockbox
+    {\parbox[t]{0cm}{
+      \usebeamercolor{block body}
+      \tikz[baseline=(current bounding
+      box.north)]{\draw[draw=black,fill=gray!40]
+        (0, 0) rectangle (\tof@boxwidth,
+        \tof@boxheight);
+      }
+    }}
+  {\parbox[t]{0cm}{
+      \vskip0.5\baselineskip
+      \ \hfill{\box\tof@blockbox}\hfill\ 
+    }}\par
+    \vskip-1\baselineskip
+  }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
