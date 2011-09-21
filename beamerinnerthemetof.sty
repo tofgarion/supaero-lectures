@@ -55,6 +55,10 @@
 \newdimen\tof@boxheight
 \newdimen\tof@boxwidth
 
+% The ultimate trick to prevent the itemize-inside-blocks bug from happening...
+\let\tof@tempitemize=\itemize
+\def\tof@itemize{\ifhmode\else\vskip-0.85\topsep\fi\tof@tempitemize}
+
 \newenvironment<>{codeblock}[1]{%
   \begin{actionenv}#2%
     \def\insertblocktitle{#1}%
