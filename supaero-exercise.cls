@@ -1,11 +1,11 @@
-%% ISAE/SUPAERO document class for exercises and exams
+%% ISAE/SUPAERO document class for exercises
 %% C. Garion, 2011
 %%
 %% Mostly taken from article.cls and "Rolling your own Document Class:
 %% Using LaTeX to keep away from the Dark Side" by Peter Flynn
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{supaero-exercise}[2011/05/22 v0.1 
-               LaTeX document class for SUPAERO exercises and exams]
+               LaTeX document class for SUPAERO exercises]
 
 
 \def\GITAbrHash{}
