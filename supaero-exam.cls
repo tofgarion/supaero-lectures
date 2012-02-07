@@ -31,3 +31,9 @@
       \endgroup
     \fi
   }%
+
+% default font
+\renewcommand\familydefault{cmss}
+
+% no indentation
+\setlength{\parindent}{0in}
