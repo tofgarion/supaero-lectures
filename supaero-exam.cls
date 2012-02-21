@@ -7,6 +7,11 @@
 \ProvidesClass{supaero-exam}[2012/01/30 v0.1 
                LaTeX document class for SUPAERO exams]
 
+% \newif\ifmarkingscheme
+% \markingschemefalse
+% \DeclareOption{markingscheme}{\markingschemetrue}
+% \DeclareOption{nomarkingscheme}{\markingschemefalse}
+
 % This class extends the article class
 % Read all the documentclass options; pass them to article,
 % unless the file "<currentoption>.sup" exists, then it is loaded
@@ -31,6 +36,28 @@
       \endgroup
     \fi
   }%
+
+% \newcommand\MarkingSchemeEmphasis[1]{%
+%   \def\MarkingScheme@Emphasis{#1}%
+% }
+% \MarkingSchemeEmphasis{}
+
+% \newenvironment{markingscheme}
+%   {%
+%     \ifmarkingscheme
+%       \begingroup
+%       \MarkingScheme@Emphasis
+%     \else
+%       \setbox\z@\vbox\bgroup
+%     \fi
+%   }{%
+%     \ifmarkingscheme
+%       \endgroup
+%     \else
+%       \egroup
+%     \fi
+%   }%
+
 
 % default font
 \renewcommand\familydefault{cmss}
