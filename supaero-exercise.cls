@@ -30,14 +30,14 @@
 % unless the file "<currentoption>.sup" exists, then it is loaded
 \PassOptionsToClass{a4paper}{article}
 \DeclareOption*{\InputIfFileExists{\CurrentOption.sup}{}{%
-    \PassOptionsToClass{\CurrentOption}{article}}}
+    \PassOptionsToClass{\CurrentOption}{exam}}}
 \ProcessOptions \relax
 \RequirePackage{atbegshi}
-\LoadClass{article}
+\LoadClass{exam}
 
 % page layout
 \RequirePackage[hscale=0.85, vscale=0.93,
-                top=25pt, headheight=70pt, includeheadfoot]{geometry}
+                top=40pt, headheight=70pt, includeheadfoot]{geometry}
 
 % babel for languages
 \RequirePackage{babel}
@@ -52,18 +52,13 @@
 \RequirePackage[pdftex]{graphicx}
 
 % header and footer
-\RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
-
-\fancypagestyle{mypage}{%
-  \fancyhf{}
-  \lhead{}
-  \chead{
+\firstpageheader{}{%
     \noindent\begin{tabular}[h]{| l l | c |}
       \hline
        & & \\[-1.5ex]
       \multicolumn{2}{| p{0.75\textwidth}|}{\huge \bf \module@internal
-        : \noncorrige{\@title} \corrige{\titlesol@internal}} &
+        : \@title} &
         \multirow{5}{*}{\includegraphics[width=0.2\textwidth]{VL_SUPAERO_72_cmjn.png}}\\[5pt]
       \large  & & \\
       \cline{1-2}
@@ -73,16 +68,42 @@
       \large Date & \large : \@date & \\
       \hline
     \end{tabular}    
-  }
-  \rhead{}
+}{}
+\runningheader{\module@internal}{\@title}{\public@internal}
+\runningheadrule
 
-  \lfoot{{\tt Revision~\GITAbrHash, \GITAuthorDate, \GITAuthorName.}}
-  \rfoot{\thepage/\pageref{LastPage}}
-  \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0.4pt}
-}
+\firstpagefooter{{\tt Revision~\GITAbrHash, \GITAuthorDate,
+    \GITAuthorName.}}{}{\thepage/\pageref{LastPage}}
+\runningfooter{}{}{\thepage/\pageref{LastPage}}
 
-\pagestyle{mypage}
+% \fancypagestyle{mypage}{%
+%   \fancyhf{}
+%   \lhead{}
+%   \chead{
+%     \noindent\begin{tabular}[h]{| l l | c |}
+%       \hline
+%        & & \\[-1.5ex]
+%       \multicolumn{2}{| p{0.75\textwidth}|}{\huge \bf \module@internal
+%         : \noncorrige{\@title} \corrige{\titlesol@internal}} &
+%         \multirow{5}{*}{\includegraphics[width=0.2\textwidth]{VL_SUPAERO_72_cmjn.png}}\\[5pt]
+%       \large  & & \\
+%       \cline{1-2}
+%        & & \\[-1.5ex]
+%       \large Auteur  & \large : \@author & \\
+%       \large Public & \large : \public@internal & \\
+%       \large Date & \large : \@date & \\
+%       \hline
+%     \end{tabular}    
+%   }
+%   \rhead{}
+
+%   \lfoot{{\tt Revision~\GITAbrHash, \GITAuthorDate, \GITAuthorName.}}
+%   \rfoot{\thepage/\pageref{LastPage}}
+%   \renewcommand{\headrulewidth}{0pt}
+%   \renewcommand{\footrulewidth}{0.4pt}
+% }
+
+% \pagestyle{headandfoot}
 
 % default font
 \renewcommand\familydefault{cmss}
