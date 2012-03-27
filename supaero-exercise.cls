@@ -1,4 +1,4 @@
-%% ISAE/SUPAERO document class for exercises and exams
+%% ISAE/SUPAERO document class for exercises
 %% C. Garion, 2011
 %%
 %% Mostly taken from article.cls and "Rolling your own Document Class:
