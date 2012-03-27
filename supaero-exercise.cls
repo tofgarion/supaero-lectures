@@ -5,7 +5,7 @@
 %% Using LaTeX to keep away from the Dark Side" by Peter Flynn
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{supaero-exercise}[2011/05/22 v0.1 
-               LaTeX document class for SUPAERO exercises and exams]
+               LaTeX document class for SUPAERO exercises]
 
 
 \def\GITAbrHash{}
@@ -28,16 +28,16 @@
 % This class extends the article class
 % Read all the documentclass options; pass them to article,
 % unless the file "<currentoption>.sup" exists, then it is loaded
+\PassOptionsToClass{a4paper}{article}
 \DeclareOption*{\InputIfFileExists{\CurrentOption.sup}{}{%
     \PassOptionsToClass{\CurrentOption}{article}}}
-\ExecuteOptions{a4paper,11pt}
 \ProcessOptions \relax
 \RequirePackage{atbegshi}
 \LoadClass{article}
 
 % page layout
 \RequirePackage[hscale=0.85, vscale=0.93,
-                top=20pt, headheight=70pt, includeheadfoot]{geometry}
+                top=25pt, headheight=70pt, includeheadfoot]{geometry}
 
 % babel for languages
 \RequirePackage{babel}
