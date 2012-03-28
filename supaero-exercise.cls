@@ -15,9 +15,6 @@
 \def\module@internal{INXXX}
 \newcommand{\module}[1]{\def\module@internal{#1}}
 
-\def\titlesol@internal{solution}
-\newcommand{\titlesol}[1]{\def\titlesol@internal{#1}}
-
 \def\public@internal{INXXX}
 \newcommand{\public}[1]{\def\public@internal{#1}}
 
@@ -33,11 +30,12 @@
     \PassOptionsToClass{\CurrentOption}{exam}}}
 \ProcessOptions \relax
 \RequirePackage{atbegshi}
+\RequirePackage{fancyhdr}
 \LoadClass{exam}
 
-% page layout
-\RequirePackage[hscale=0.85, vscale=0.93,
-                top=40pt, headheight=70pt, includeheadfoot]{geometry}
+% page layout for pages other than first one, see header and footer
+% conf. below
+\RequirePackage[hscale=0.85, vscale=0.90, top=40pt, includeheadfoot]{geometry}
 
 % babel for languages
 \RequirePackage{babel}
@@ -51,62 +49,53 @@
 % graphics
 \RequirePackage[pdftex]{graphicx}
 
+% title with shorttitle
+\renewcommand\title{\@dblarg\mytitlecmd}
+\long\def\mytitlecmd[#1]#2{%
+  \def\mytitle{#2}%
+  \def\shorttitle{#1}%
+}
+
 % header and footer
 \RequirePackage{lastpage}
-\firstpageheader{}{%
-    \noindent\begin{tabular}[h]{| l l | c |}
-      \hline
-       & & \\[-1.5ex]
-      \multicolumn{2}{| p{0.75\textwidth}|}{\huge \bf \module@internal
-        : \@title} &
-        \multirow{5}{*}{\includegraphics[width=0.2\textwidth]{VL_SUPAERO_72_cmjn.png}}\\[5pt]
-      \large  & & \\
-      \cline{1-2}
-       & & \\[-1.5ex]
-      \large Auteur  & \large : \@author & \\
-      \large Public & \large : \public@internal & \\
-      \large Date & \large : \@date & \\
-      \hline
-    \end{tabular}    
-}{}
-\runningheader{\module@internal}{\@title}{\public@internal}
-\runningheadrule
 
-\firstpagefooter{{\tt Revision~\GITAbrHash, \GITAuthorDate,
-    \GITAuthorName.}}{}{\thepage/\pageref{LastPage}}
+\firstpageheader{}{%
+  \noindent\begin{tabular}[t]{| l l | c |}
+    \hline
+    & & \\[-1.5ex]
+    \multicolumn{2}{| p{0.75\textwidth}|}{\huge \bf \module@internal
+      : \mytitle} &
+    \multirow{5}{*}{\includegraphics[width=0.2\textwidth]{VL_SUPAERO_72_cmjn.png}}\\[5pt]
+    \large  & & \\
+    \cline{1-2}
+    & & \\[-1.5ex]
+    \large Auteur  & \large : \@author & \\
+    \large Public & \large : \public@internal & \\
+    \large Date & \large : \@date & \\
+    \hline
+  \end{tabular}    
+}{}%
+
+\firstpagefooter{%
+  \tt Revision~\GITAbrHash, \GITAuthorDate, \GITAuthorName.}%
+  {}%
+  {\thepage/\pageref{LastPage}}%
+
+\runningheader{\module@internal}{\shorttitle}{\public@internal}%
 \runningfooter{}{}{\thepage/\pageref{LastPage}}
 
-% \fancypagestyle{mypage}{%
-%   \fancyhf{}
-%   \lhead{}
-%   \chead{
-%     \noindent\begin{tabular}[h]{| l l | c |}
-%       \hline
-%        & & \\[-1.5ex]
-%       \multicolumn{2}{| p{0.75\textwidth}|}{\huge \bf \module@internal
-%         : \noncorrige{\@title} \corrige{\titlesol@internal}} &
-%         \multirow{5}{*}{\includegraphics[width=0.2\textwidth]{VL_SUPAERO_72_cmjn.png}}\\[5pt]
-%       \large  & & \\
-%       \cline{1-2}
-%        & & \\[-1.5ex]
-%       \large Auteur  & \large : \@author & \\
-%       \large Public & \large : \public@internal & \\
-%       \large Date & \large : \@date & \\
-%       \hline
-%     \end{tabular}    
-%   }
-%   \rhead{}
+\runningheadrule{}
+\footrule{}
 
-%   \lfoot{{\tt Revision~\GITAbrHash, \GITAuthorDate, \GITAuthorName.}}
-%   \rfoot{\thepage/\pageref{LastPage}}
-%   \renewcommand{\headrulewidth}{0pt}
-%   \renewcommand{\footrulewidth}{0.4pt}
-% }
+\extraheadheight[70pt]{0pt}
 
-% \pagestyle{headandfoot}
+\pagestyle{headandfoot}
 
 % default font
 \renewcommand\familydefault{cmss}
 
 % no indentation
 \setlength{\parindent}{0in}
+
+% no date by default
+\date{}
