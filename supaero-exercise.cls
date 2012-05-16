@@ -33,6 +33,21 @@
 \RequirePackage{fancyhdr}
 \LoadClass{exam}
 
+\newenvironment{nonsolution}%[1][0pt]%
+  {%
+    \ifprintanswers
+      \setbox\z@\vbox\bgroup
+    \else
+      \begingroup
+    \fi
+  }{%
+    \ifprintanswers
+      \egroup
+    \else
+      \endgroup
+    \fi
+  }%
+
 % page layout for pages other than first one, see header and footer
 % conf. below
 \RequirePackage[hscale=0.85, vscale=0.90, top=40pt, includeheadfoot]{geometry}
@@ -59,7 +74,19 @@
 % header and footer
 \RequirePackage{lastpage}
 
+% textpos
+\RequirePackage[absolute]{textpos}
+\setlength{\TPHorizModule}{0.3\textwidth}
+\setlength{\TPVertModule}{\TPHorizModule}
+\textblockorigin{2em}{3em}
+
 \firstpageheader{}{%
+  \ifprintanswers
+  \begin{textblock}{1}(1,0)
+    \tikz \node[rounded corners, draw=red!80, ultra thick, rotate=30]% 
+    {\Huge\bf \textcolor{red}{\texttt{Solution}}};
+  \end{textblock}
+  \fi
   \noindent\begin{tabular}[t]{| l l | c |}
     \hline
     & & \\[-1.5ex]
@@ -81,7 +108,7 @@
   {}%
   {\thepage/\pageref{LastPage}}%
 
-\runningheader{\module@internal}{\shorttitle}{\public@internal}%
+\runningheader{\module@internal}{\shorttitle \ifprintanswers { }- solution\fi}{\public@internal}%
 \runningfooter{}{}{\thepage/\pageref{LastPage}}
 
 \runningheadrule{}
