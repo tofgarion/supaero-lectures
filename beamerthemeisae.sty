@@ -1,0 +1,30 @@
+\ProvidesPackage{beamerthemeisae}[2012/06/03]
+
+% Beamer theme by Christophe Garion for ISAE presentation
+%
+% Vased on the progressbar theme by Sylvain Bouveret
+% <sylvain[dot]bouveret[aT]cert[DoT]fr> feb. 2007 version 0.31 and a
+% personal adaptation of progressbar theme
+%
+% based on the LaTeX-Beamer package :
+% Copyright 2003 by Till Tantau <tantau@users.sourceforge.net>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 3.
+
+\RequirePackage{tikz}
+
+\usecolortheme{isae}
+\useinnertheme{isae}
+\usefonttheme{isae}
+\useoutertheme{isae}
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamertemplate{navigation symbols}{}
+
+\AtBeginDocument{%
+  \typeout{..................................................................}
+  \typeout{You are using the ISAE beamer theme (Christophe G.)}
+  \typeout{Version: Jun. 2012.}
+  \typeout{..................................................................}
+}
