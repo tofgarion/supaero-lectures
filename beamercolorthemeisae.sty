@@ -14,25 +14,13 @@
 
 \makeatletter
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Some color definitions...
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usecolortheme{default}
 
-\usecolortheme{rose}
+% color definition
+\definecolor{isae@bgtitle}{rgb}{1,1,1}
+\definecolor{isae@fgtitle}{rgb}{0,0,0}
 
-\definecolor{tof@bgblue}{rgb}{0.75,0.75,0.95} % use structure theme to change
-\definecolor{tof@fgblue}{rgb}{0.1,0.1,0.9} % use structure theme to change
+% title colors
+\setbeamercolor*{title in head}{fg=isae@fgtitle,bg=isae@bgtitle}
 
-\setbeamercolor*{palette primary}{fg=tof@fgblue,bg=tof@bgblue}
-\setbeamercolor*{palette secundary}{fg=tof@fgblue,bg=tof@bgblue}
-\setbeamercolor*{palette tertiary}{fg=tof@fgblue,bg=tof@bgblue}
-
-\setbeamercolor{section in head/foot}{parent=palette primary}
-
-\setbeamercolor{title in head/foot}{fg=tof@fgblue,bg=white}
-\setbeamercolor{author in head/foot}{fg=tof@fgblue,bg=white}
-
-\setbeamercolor{alerted text}{fg=tof@fgblue}
 \makeatother
