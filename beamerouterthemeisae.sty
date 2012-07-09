@@ -14,21 +14,24 @@
 
 \RequirePackage{tikz}
 
+\useoutertheme{default}
+
 \makeatletter
 
 \mode<presentation>
 
 % Frame title
 
+\setbeamertemplate{frametitle}
+{
   \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
   \@tempdima=\textwidth%
   \advance\@tempdima by\beamer@leftmargin%
   \advance\@tempdima by\beamer@rightmargin%
-  \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
-    \usebeamerfont{frametitle}%
+  \begin{beamercolorbox}[sep=0.3cm,wd=\the\@tempdima]{frametitle}
+    \usebeamerfont{frametitle}
     \vbox{}\vskip-1ex%
-    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
-    \strut\insertframetitle\strut\par%
+    \strut\insertframetitle\strut\par
     {%
       \ifx\insertframesubtitle\@empty%
       \else%
@@ -36,8 +39,7 @@
       \fi
     }%    
     \vskip-1ex%
-    \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
-  \end{beamercolorbox}%
+  \end{beamercolorbox}
 }
 
 \mode<all>
