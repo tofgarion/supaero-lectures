@@ -24,6 +24,33 @@
 \newcommand*{\twoptoff}{\ifnum \catcode`\;=13 \catcode`\;=12 \setboolean{@twopt}{true} \fi}
 \newcommand*{\twopton}{\if@twopt \catcode`\;=13 \setboolean{@twopt}{false}  \fi}
 
+% balls for itemize etc.
+\setbeamertemplate{itemize item}{\begin{tikzpicture}\shade[ball color=isae@myball!80!white] (0, 0) circle (0.07);\draw[draw=isae@myball!50!black!90!bg] (0, 0) circle (0.07);\end{tikzpicture}}
+\setbeamertemplate{itemize subitem}{\begin{tikzpicture}\shade[ball color=isae@myball!80!white] (0, 0) circle (0.05);\draw[draw=isae@myball!50!black!90!bg,] (0, 0) circle (0.05);\end{tikzpicture}}
+
+\setbeamertemplate{enumerate item}{\raisebox{-0.4ex}{\begin{tikzpicture}\shadedraw node [draw=isae@myball!50!black!90!bg, inner sep=1pt, shading=ball, circle, ball color=isae@myball!80!white] {\tiny\color{white}\bf\insertenumlabel};\end{tikzpicture}}}
+\setbeamertemplate{enumerate subitem}{\raisebox{-0.4ex}{\begin{tikzpicture}\shadedraw node [draw=isae@myball!50!black!90!bg, inner sep=1pt, shading=ball,circle, ball color=isae@myball!80!white] {\tiny\color{white}\bf\insertenumlabel};\end{tikzpicture}}}
+
+% \normalsize
+% \pgfdeclareradialshading[bg,parent.bg]{tocsphere}{\pgfpoint{-0.5ex}{0.6ex}}%
+% {%
+%   color(0cm)=(isae@myball!35!white);
+%   color(0.44ex)=(isae@myball!75!white);
+%   color(0.88ex)=(isae@myball!70!black!90!bg);
+%   color(1.2ex)=(isae@myball!50!black!90!bg);
+%   color(1.3ex)=(isae@myball!50!black!90!bg)
+% }
+
+% \pgfdeclareradialshading[isae@myball,bg]{bigsphere}{\pgfpoint{-0.1849315ex}{.2260273ex}}%
+% {%
+%   color(0cm)=(isae@myball!15);
+%   color(0.1643835ex)=(isae@myball!75);
+%   color(0.3287671ex)=(isae@myball!70!black);
+%   color(0.4520547ex)=(isae@myball!50!black);
+%   color(0.53ex)=(isae@myball!50!black)
+% }%
+
+
 % Frame title...
   
 \mode<all>
