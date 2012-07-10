@@ -20,6 +20,23 @@
   \titlepage
 \end{frame}
 
+\begin{frame}
+\frametitle{Plan}
+\tableofcontents[part=1,pausesections]
+\end{frame}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Plan}
+    \tableofcontents[current]
+  \end{frame}
+}
+
+\part<presentation>{Main Part}
+
+\section{Généralités}
+\label{sec:gen}
 
 % Transparent ------------------------------------------------ slide -
 \begin{frame}{Un exemple de transparent simple}
@@ -32,13 +49,41 @@ Voici un transparent classique:
 \item le bandeau supérieur contient le titre du transparent
 \item il n'y a pas de logo ISAE dans le bandeau supérieur pour gagner
   en lisibilité
-\item 
 \end{itemize}
 
+\begin{enumerate}
+\item les items sont représentés par des boules en dégradé
+\item idem pour les items numérotés
+\end{enumerate}
 
-Blablabla
+\vfill
 
 \end{frame}
 % ------------------------------------------------------------ slide -
+
+\section{Blocs}
+\label{sec:blocs}
+
+% Transparent ------------------------------------------------ slide -
+\begin{frame}
+\frametitle{Différents blocs}
+
+\vfill
+
+\begin{block}{Mon bloc}
+  
+\end{block}
+
+\vfill
+
+\begin{definition}[Ma définition]
+  
+\end{definition}
+
+\vfill
+
+\end{frame}
+% ------------------------------------------------------------ slide -
+
 
 \end{document}
