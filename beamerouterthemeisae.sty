@@ -20,7 +20,7 @@
 
 \mode<presentation>
 
-% Frame title
+% Headline
 
 \setbeamertemplate{frametitle}
 {
@@ -28,7 +28,7 @@
   \@tempdima=\textwidth%
   \advance\@tempdima by\beamer@leftmargin%
   \advance\@tempdima by\beamer@rightmargin%
-  \begin{beamercolorbox}[sep=0.3cm,wd=\the\@tempdima]{frametitle}
+  \begin{beamercolorbox}[sep=0.3cm,wd=\the\@tempdima]{title in head/foot}
     \usebeamerfont{frametitle}
     \vbox{}\vskip-1ex%
     \strut\insertframetitle\strut\par
@@ -41,6 +41,22 @@
     \vskip-1ex%
   \end{beamercolorbox}
 }
+
+% Footline
+
+\defbeamertemplate*{footline}{isae theme}{
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle\hfill\textbf{\insertframenumber / \inserttotalframenumber}
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+}
+
 
 \mode<all>
 
