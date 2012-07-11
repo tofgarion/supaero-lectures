@@ -17,13 +17,22 @@
 \usecolortheme{default}
 
 % color definition
+\definecolor{isae@bg}{rgb}{1,1,1}
+\definecolor{isae@fg}{rgb}{0,0,0}
 \definecolor{isae@bgtitle}{rgb}{0,0,0}
 \definecolor{isae@fgtitle}{rgb}{1,1,1}
 \definecolor{isae@myball}{rgb}{0,0,0}
 
+% structure
+\setbeamercolor{structure}{fg=isae@fg,bg=isae@bg}
+
 % headline/footline colors
 \setbeamercolor{frametitle}{fg=isae@fgtitle,bg=isae@bgtitle}
+\setbeamercolor{frametitle gradient}{fg=isae@bgtitle,bg=isae@bgtitle!white!60}
 \setbeamercolor{author in head/foot}{fg=isae@fgtitle,bg=isae@bgtitle}
 \setbeamercolor{title in head/foot}{fg=isae@fgtitle,bg=isae@bgtitle}
+
+% itemize/enumerate
+\setbeamercolor{item}{fg=isae@bg,bg=isae@fg}
 
 \makeatother

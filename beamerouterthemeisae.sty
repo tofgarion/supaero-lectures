@@ -20,6 +20,119 @@
 
 \mode<presentation>
 
+% beamergradientcolorbox definition. Use a gradient for colored
+% box. The bottom color of box is the bg part of the color family and
+% the top color is defined by the topcolor option and the mix option
+% (top color of the gradient = bg!mix!topcolor). Default value for mix
+% is 0.5 and default value for topcolor is white.
+
+\define@key{beamergradcolbox}{wd}{\def\beamer@gradcolbox@wd{#1}}
+\define@key{beamergradcolbox}{ht}{\def\beamer@gradcolbox@ht{#1}}
+\define@key{beamergradcolbox}{dp}{\def\beamer@gradcolbox@dp{#1}}
+\define@key{beamergradcolbox}{leftskip}{\def\beamer@gradcolbox@ls{#1}}
+\define@key{beamergradcolbox}{rightskip}{\def\beamer@gradcolbox@rs{#1}}
+\define@key{beamergradcolbox}{left}[0pt]{\def\beamer@gradcolbox@ls{0pt}\def\beamer@gradcolbox@rs{#1 plus1fill}}
+\define@key{beamergradcolbox}{center}[0pt]{\def\beamer@gradcolbox@ls{#1 plus1fill}\def\beamer@gradcolbox@rs{#1 plus1fill}}
+\define@key{beamergradcolbox}{right}[0pt]{\def\beamer@gradcolbox@ls{#1 plus1fill}\def\beamer@gradcolbox@rs{0pt}}
+\define@key{beamergradcolbox}{sep}{\def\beamer@gradcolbox@sep{#1}}
+\define@key{beamergradcolbox}{colsep}{\def\beamer@gradcolbox@colsep{#1}}
+\define@key{beamergradcolbox}{colsep*}{\def\beamer@gradcolbox@colseps{#1}}
+\define@key{beamergradcolbox}{shadow}[true]{\def\beamer@gradcolbox@shadow{#1}}
+\define@key{beamergradcolbox}{rounded}{\csname beamer@gradcolbox@rounded#1\endcsname}
+\define@key{beamergradcolbox}{ignorebg}[false]{\csname beamer@gradcolbox@ignorebg#1\endcsname}
+\define@key{beamergradcolbox}{vmode}[]{\def\beamer@vmode{}}
+\define@key{beamergradcolbox}{mix}[0.5]{\def\beamer@gradcolbox@mix{#1}}
+\define@key{beamergradcolbox}{topcolor}[white]{\def\beamer@gradcolbox@topcolor{#1}}
+
+\newif\ifbeamer@gradcolbox@rounded
+\newif\ifbeamer@gradcolbox@ignorebg
+
+\newenvironment{beamergradientcolorbox}[2][]{%
+  \begingroup%
+    \def\beamer@gradcolbox@coladd{0pt}%
+    \def\beamer@vmode{\leavevmode}%
+    \setkeys{beamergradcolbox}{%
+      wd=\textwidth,ht={},dp={},%
+      leftskip=0pt,rightskip=0pt plus1fil,%
+      sep=0pt,colsep=0pt,colsep*=0pt,%
+      shadow=false,rounded=false,ignorebg=false,
+      mix=50,topcolor=white}%
+    \setkeys{beamergradcolbox}{#1}%
+    \ifbeamercolorempty[bg]{#2}{\@tempswafalse}{\@tempswatrue}%
+    \ifbeamer@gradcolbox@ignorebg\@tempswafalse\fi%
+    \def\beamer@gradcolbox@color{#2}%
+    \hsize=\beamer@gradcolbox@wd%
+    \setbox\beamer@tempbox=\hbox\bgroup\vbox\bgroup%
+      \leftskip=\beamer@gradcolbox@ls%
+      \advance\leftskip by\beamer@gradcolbox@sep%
+      \rightskip=\beamer@gradcolbox@rs%
+      \advance\rightskip by\beamer@gradcolbox@sep%
+      \ifbeamer@gradcolbox@ignorebg%
+        \colorlet{beamer@temp@color}{bg}%
+        \usebeamercolor[fg]{#2}%
+        \colorlet{bg}{beamer@temp@color}%
+      \else%
+        \usebeamercolor[fg]{#2}%
+      \fi%
+      \if@tempswa%
+        \advance\leftskip by\beamer@gradcolbox@colsep%
+        \advance\rightskip by\beamer@gradcolbox@colsep%
+        \ifdim\beamer@gradcolbox@colsep=0pt\else\vskip\beamer@gradcolbox@colsep\fi%
+        \ifdim\beamer@gradcolbox@colseps=0pt\else\vskip\beamer@gradcolbox@colseps\fi%
+      \fi%
+      \ifdim\beamer@gradcolbox@sep=0pt\else\vskip\beamer@gradcolbox@sep\fi%
+      \beamer@vmode\ignorespaces}{%
+      \ifdim\beamer@gradcolbox@sep=0pt\else\vskip\beamer@gradcolbox@sep\fi%
+      \if@tempswa\ifdim\beamer@gradcolbox@colsep=0pt\else\vskip\beamer@gradcolbox@colsep\fi\fi%
+      \if@tempswa\ifdim\beamer@gradcolbox@colseps=0pt\else\vskip\beamer@gradcolbox@colseps\fi\fi%
+    \egroup\egroup%
+    \wd\beamer@tempbox=\hsize%
+    \@tempdima=\wd\beamer@tempbox%
+    \ifx\beamer@gradcolbox@ht\@empty%
+    \else%
+      \ht\beamer@tempbox=\beamer@gradcolbox@ht%
+    \fi%
+    \ifx\beamer@gradcolbox@dp\@empty%
+    \else%
+      \dp\beamer@tempbox=\beamer@gradcolbox@dp%
+    \fi%
+    \ifbeamer@gradcolbox@rounded%
+      \if@tempswa%
+        \begin{beamerboxesrounded}[%
+          shadow=\beamer@gradcolbox@shadow,%
+          lower=\beamer@colbox@color,%
+          upper=normal text,%
+          width=\beamer@gradcolbox@wd]{}%
+          \box\beamer@tempbox%
+        \end{beamerboxesrounded}%
+      \else%
+        \ifdim\@tempdima>\textwidth%
+          \setbox\beamer@tempbox=\hbox to\textwidth{\hss\box\beamer@tempbox\hss}%
+        \fi%
+        \box\beamer@tempbox%
+      \fi%
+    \else%
+      \if@tempswa\setbox\beamer@tempbox=\hbox{\vbox{%
+        \usebeamercolor{\beamer@gradcolbox@color}%
+        \advance\hsize by \beamer@gradcolbox@colseps\relax%
+        \advance\hsize by \beamer@gradcolbox@colseps\relax%
+        \hskip-\beamer@gradcolbox@colseps%
+        \fboxsep=0pt\mbox{%
+          \hskip\beamer@gradcolbox@colseps%
+          \hbox{\tikz\node[inner sep=0, outer sep=0,
+            top color=bg!\beamer@gradcolbox@mix!\beamer@gradcolbox@topcolor, bottom color=bg] {\box\beamer@tempbox};}%
+          \hskip\beamer@gradcolbox@colseps%
+        }%
+        \hskip-\beamer@gradcolbox@colseps%
+      }}\fi%
+      \ifdim\@tempdima>\textwidth%
+        \setbox\beamer@tempbox=\hbox to\textwidth{\hskip0pt minus\beamer@leftmargin\relax\box\beamer@tempbox\hskip0pt minus\beamer@rightmargin\relax}%
+      \fi%
+      \box\beamer@tempbox%
+    \fi%
+  \endgroup%
+}
+
 % Headline
 
 \setbeamertemplate{frametitle}
@@ -28,7 +141,7 @@
   \@tempdima=\textwidth%
   \advance\@tempdima by\beamer@leftmargin%
   \advance\@tempdima by\beamer@rightmargin%
-  \begin{beamercolorbox}[sep=0.3cm,wd=\the\@tempdima]{title in head/foot}
+  \begin{beamergradientcolorbox}[sep=0.3cm,wd=\the\@tempdima]{title in head/foot}
     \usebeamerfont{frametitle}
     \vbox{}\vskip-1ex%
     \strut\insertframetitle\strut\par
@@ -39,7 +152,7 @@
       \fi
     }%    
     \vskip-1ex%
-  \end{beamercolorbox}
+  \end{beamergradientcolorbox}
 }
 
 % Footline
