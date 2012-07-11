@@ -133,7 +133,7 @@
   \endgroup%
 }
 
-% Headline
+% headline and frametitle
 
 \setbeamertemplate{frametitle}
 {
@@ -141,7 +141,7 @@
   \@tempdima=\textwidth%
   \advance\@tempdima by\beamer@leftmargin%
   \advance\@tempdima by\beamer@rightmargin%
-  \begin{beamergradientcolorbox}[sep=0.3cm,wd=\the\@tempdima]{title in head/foot}
+  \begin{beamergradientcolorbox}[sep=0.3cm,wd=\the\@tempdima]{frametitle}
     \usebeamerfont{frametitle}
     \vbox{}\vskip-1ex%
     \strut\insertframetitle\strut\par
@@ -155,7 +155,7 @@
   \end{beamergradientcolorbox}
 }
 
-% Footline
+% footline
 
 \defbeamertemplate*{footline}{isae theme}{
 {%
@@ -170,6 +170,39 @@
 }
 }
 
+% title page
+\defbeamertemplate*{title page}{isae theme}{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[at=(current page.north), anchor=north, outer sep=0, inner sep=0] {
+      \includegraphics[width=\paperwidth]{planewing.png}
+    };
+  \end{tikzpicture}
+
+    \begin{center}
+
+    \textbf{\textcolor{structure.fg}\large\inserttitle}\\
+    \textcolor{structure.fg}\large\insertsubtitle
+
+%    \pgfuseshading{separationtitlepagelineshading}
+    \vskip\baselineskip
+    \footnotesize\insertauthor\\[\baselineskip]
+    \tiny\insertinstitute\\[\baselineskip]
+    \includegraphics[width=2cm]{VL_SUPAERO_72_cmjn.png}
+%    \includegraphics[width=2cm]{Logo_SUPAERO_72cmjn}
+%     \begin{minipage}[h]{1.5cm}
+%       \includegraphics[width=1.5cm]{logoisae}
+%     \end{minipage}\hspace{0.25cm}
+%     \begin{minipage}[h]{1.5cm}
+%       \includegraphics[width=1.5cm]{logosup}
+%     \end{minipage}
+    \vskip\baselineskip
+%    \pgfuseshading{separationtitlepagelineshading}
+    \vfill
+    \footnotesize    
+    \insertdate
+    \vfill
+  \end{center}
+}
 
 \mode<all>
 
