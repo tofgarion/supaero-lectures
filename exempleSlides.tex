@@ -10,6 +10,12 @@
 \uselanguage{French}
 \languagepath{French}
 
+\usepackage[babel]{csquotes}
+\usepackage[
+languague=american,%
+style=beamer%
+]{biblatex}
+\addbibresource{beamer-bib.bib}
 
 \usetheme{isae}
 
@@ -109,8 +115,73 @@ blocs «~normaux~».
 
 \vfill
 
+\end{frame}
+% ------------------------------------------------------------ slide -
+
+\section{Bibliographie}
+\label{sec:biblio}
+
+% Transparent ------------------------------------------------ slide -
+\begin{frame}
+\frametitle{Bibliographie sur un seul transparent}
+
+J'utilise biblatex pour la bibliographie. Il reste à changer le style
+beamer pour BibTeX car pour l'instant, il n'est pas très joli.
+
+Une commande permet de n'insérer que les références définies
+précédemment:
+
+\vspace{1cm}
+
+\biblioinline{bouveret12:_beamer}
 
 \end{frame}
 % ------------------------------------------------------------ slide -
+
+% Transparent ------------------------------------------------ slide -
+\begin{frame}
+\frametitle{Bibliographie}
+
+Une commande permet d'insérer toutes les références qui ont été
+utilisées jusqu'à présent:
+
+\nocite{mittelbach04:_latex}
+
+\biblio{}
+
+\pause
+
+\begin{block}{Bug hunter or feature writer}
+  Toi aussi trouve le bug qui n'affiche pas correctement le petit
+  dessin pour la deuxième référence\ldots
+\end{block}
+
+\end{frame}
+% ------------------------------------------------------------ slide -
+
+\section{Ce qu'il reste à faire\ldots}
+\label{sec:todo}
+
+% Transparent ------------------------------------------------ slide -
+\begin{frame}
+\frametitle{TODO!}
+
+\begin{itemize}
+\item vérifier que les transparents «~\textit{continued}~»
+  fonctionnent bien
+\item vérifier que les transparents longs type bibliographie sont bien
+  séparés sur plusieurs pages
+\item travailler sur l'aspect de la bibliographie (fichier bbx de
+  \texttt{biblatex} pour Beamer, fontes utilisées, petit item
+  apparaissant à chaque fois etc.)
+\item entendre les complaintes de tous les collègues parce que dans le
+  bandeau inférieur, ils auraient voulu avoir le nom de leur chien
+  0.75 cm à côté du nom du cours \smiley
+\item juste pour le fun, une petite tache de café hein
+\end{itemize}
+
+\end{frame}
+% ------------------------------------------------------------ slide -
+
 
 \end{document}
