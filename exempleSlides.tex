@@ -2,9 +2,14 @@
 \documentclass{beamer}
 
 \usepackage[utf8]{inputenc}
+\usepackage{ae,aecompl,aeguill}
 \usepackage{etex}
 \usepackage{wasysym}
 \usepackage{hyperref}
+\usepackage[french]{babel}
+\uselanguage{French}
+\languagepath{French}
+
 
 \usetheme{isae}
 
@@ -77,19 +82,35 @@ Voici un transparent classique:
 \vfill
 
 \begin{block}{Mon bloc}
-  
+
+Un exemple de bloc simple. Normalement, pas (plus?) de problèmes avec
+\texttt{itemize}:
+
+\begin{itemize}
+\item premier item
+\item second item
+\end{itemize}  
 \end{block}
 
 \vfill
 
 \begin{definition}[Ma définition]
-  
+Les définitions, théorèmes etc. fonctionnent. Il faut positionner la
+langue (cf. préambule) pour avoir les noms en français. Ce sera fait
+automatiquement dans la classe finale.
 \end{definition}
 
 \vfill
 
+\begin{example}
+Les blocs \texttt{example} et \texttt{alerted} sont définis comme des
+blocs «~normaux~».
+\end{example}
+
+\vfill
+
+
 \end{frame}
 % ------------------------------------------------------------ slide -
-
 
 \end{document}
