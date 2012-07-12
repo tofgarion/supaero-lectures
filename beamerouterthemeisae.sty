@@ -172,36 +172,28 @@
 
 % title page
 \defbeamertemplate*{title page}{isae theme}{
-  \begin{tikzpicture}[remember picture,overlay]
-    \node[at=(current page.north), anchor=north, outer sep=0, inner sep=0] {
+  \begin{tikzpicture}[remember picture,overlay,
+                      every node/.style={inner sep=0, outer sep=0}]
+    \node[at=(current page.north), anchor=north] (frametitle) {
+      \begin{beamergradientcolorbox}[sep=0.3cm,wd=\paperwidth]{frametitle}
+        \usebeamerfont{titlepageisae}
+        \hbox{\rlap{\parbox{\paperwidth}{\raggedright\includegraphics[height=1.5em]{logo_isae_compact_nb_inv_72.png}}}
+              \parbox{\paperwidth}{\centering Institut Sup\'erieur de l'A\'eronautique et de l'Espace}}
+      \end{beamergradientcolorbox}
+    };
+    \node[at=(frametitle.south), anchor=north] (planepic) {
       \includegraphics[width=\paperwidth]{planewing.png}
     };
+    \node[at=(planepic.south), anchor=north, outer sep=2ex, 
+          text width=\paperwidth, align=left] (titlepagetitle) {
+            \begin{tabular}[h]{l}
+              \usebeamerfont{titlepagetitleisae} \inserttitle\\
+              \usebeamerfont{titlepagesubtitleisae} \insertsubtitle\\[\baselineskip]
+              \usebeamerfont{titlepageauthorisae} \insertauthor\\
+              \usebeamerfont{titlepageinstituteisae} \insertinstitute
+            \end{tabular}
+    };
   \end{tikzpicture}
-
-    \begin{center}
-
-    \textbf{\textcolor{structure.fg}\large\inserttitle}\\
-    \textcolor{structure.fg}\large\insertsubtitle
-
-%    \pgfuseshading{separationtitlepagelineshading}
-    \vskip\baselineskip
-    \footnotesize\insertauthor\\[\baselineskip]
-    \tiny\insertinstitute\\[\baselineskip]
-    \includegraphics[width=2cm]{VL_SUPAERO_72_cmjn.png}
-%    \includegraphics[width=2cm]{Logo_SUPAERO_72cmjn}
-%     \begin{minipage}[h]{1.5cm}
-%       \includegraphics[width=1.5cm]{logoisae}
-%     \end{minipage}\hspace{0.25cm}
-%     \begin{minipage}[h]{1.5cm}
-%       \includegraphics[width=1.5cm]{logosup}
-%     \end{minipage}
-    \vskip\baselineskip
-%    \pgfuseshading{separationtitlepagelineshading}
-    \vfill
-    \footnotesize    
-    \insertdate
-    \vfill
-  \end{center}
 }
 
 \mode<all>
