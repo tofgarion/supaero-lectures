@@ -17,6 +17,8 @@ style=beamer%
 ]{biblatex}
 \addbibresource{beamer-bib.bib}
 
+\usepackage{coffee4}
+
 \usetheme{isae}
 
 \begin{document}
@@ -177,11 +179,16 @@ utilisées jusqu'à présent:
 \item entendre les complaintes de tous les collègues parce que dans le
   bandeau inférieur, ils auraient voulu avoir le nom de leur chien
   0.75 cm à côté du nom du cours \smiley
-\item juste pour le fun, une petite tache de café hein
+
+\onslide<all:2>{
+\item juste pour le fun, une petite tache de café \smiley
+
+\cofeAm{0.5}{0.5}{0}{0.5cm}{0.5cm}
+
+}
 \end{itemize}
 
 \end{frame}
 % ------------------------------------------------------------ slide -
-
 
 \end{document}
