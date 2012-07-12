@@ -18,6 +18,21 @@
 
 \makeatletter
 
+% definitions for module
+\def\module{\@dblarg\beamer@module}
+\long\def\beamer@module[#1]#2{%
+  \def\insertmodule{#2}%
+  \def\beamer@shortmodule{#1}%
+  }
+\module{}
+
+\newcommand\insertshortmodule[1][]{%
+  {%
+    \let\thanks=\@gobble%
+    \beamer@setupshort{#1}%
+    \beamer@insertshort{\beamer@shortmodule}%
+  }}
+
 \mode<presentation>
 
 % beamergradientcolorbox definition. Use a gradient for colored
@@ -160,8 +175,11 @@
 \defbeamertemplate*{footline}{isae theme}{
 {%
   \leavevmode%
-  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+  \hbox{\begin{beamercolorbox}[wd=.35\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm]{author in head/foot}%
       \usebeamerfont{author in head/foot}\insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortmodule
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
       \usebeamerfont{title in head/foot}\insertshorttitle\hfill\textbf{\insertframenumber / \inserttotalframenumber}
