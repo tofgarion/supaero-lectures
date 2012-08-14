@@ -50,6 +50,7 @@
 \ifx\@requirebiblatex\@empty
   \relax
 \else
+\RequirePackage[babel]{csquotes}
 \RequirePackage[
   style=beamer%
   ]{biblatex}
