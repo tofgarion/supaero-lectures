@@ -1,25 +1,12 @@
 \RequirePackage{atbegshi}
-\documentclass{beamer}
+\documentclass[fr,biblatex]{isae-slides}
 
 \usepackage[utf8]{inputenc}
 \usepackage{ae,aecompl,aeguill}
-\usepackage{etex}
 \usepackage{wasysym}
-\usepackage{hyperref}
-\usepackage[french]{babel}
-\uselanguage{French}
-\languagepath{French}
-
-\usepackage[babel]{csquotes}
-\usepackage[
-languague=american,%
-style=beamer%
-]{biblatex}
 \addbibresource{beamer-bib.bib}
 
 \usepackage{coffee4}
-
-\usetheme{isae}
 
 \begin{document}
 
@@ -130,8 +117,7 @@ blocs «~normaux~».
 J'utilise biblatex pour la bibliographie. Il reste à changer le style
 beamer pour BibTeX car pour l'instant, il n'est pas très joli.
 
-Une commande permet de n'insérer que les références définies
-précédemment:
+Une commande permet de n'insérer que des références précises:
 
 \vspace{1cm}
 

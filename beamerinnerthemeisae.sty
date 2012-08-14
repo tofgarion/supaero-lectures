@@ -73,33 +73,4 @@
 \defblock[example]
 \defblock[alerted]
 
-% bibliography
-\defbibheading{inline-bibliography}{}
-\newcommand{\printbibliographyinline}{%
-  \printbibliography[segment=\therefsegment,heading=inline-bibliography]%
-  \newrefsegment%
-}
-
-\newcommand{\biblioinline}[1]{
-  \nocite{#1}
-  \begin{center}
-    \usebeamercolor{block body}
-    \begin{tikzpicture}
-      \draw node[draw=fg!20!bg, fill=bg, rounded corners=2pt] {\parbox{0.95\textwidth}{\vskip-0.1cm\printbibliographyinline\vskip0.1cm}};
-    \end{tikzpicture}
-    \twopton{}
-\end{center}
-}
-
-\newcommand{\biblio}{
-  \begin{center}
-    \usebeamercolor{block body}
-    \begin{tikzpicture}
-      \draw node[draw=fg!20!bg, fill=bg, rounded corners=2pt] {\parbox{0.95\textwidth}{\vskip-0.1cm\printbibliography\vskip0.1cm}};
-    \end{tikzpicture}
-    \twopton{}
-\end{center}
-}
-
-
 \mode<all>
