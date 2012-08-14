@@ -1,0 +1,17 @@
+*.aux
+*.bbl
+*.blg
+*.out
+*.nav
+*.log
+*.snm
+*.toc
+*.thm
+*~
+*.el
+*.rel
+*.fix
+*_region_*
+rub*
+*run.xml
+*-blx.bib
