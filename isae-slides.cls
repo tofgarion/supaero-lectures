@@ -58,7 +58,7 @@
 \else
 \RequirePackage[babel]{csquotes}
 \RequirePackage[
-  style=beamer%
+  style=isae%
   ]{biblatex}
 \defbibheading{inline-bibliography}{}
 \newcommand{\printbibliographyinline}{%
@@ -67,22 +67,14 @@
 }
 \newcommand{\biblioinline}[1]{
   \nocite{#1}
-  \begin{center}
-    \usebeamercolor{block body}
-    \begin{tikzpicture}
-      \draw node[draw=fg!20!bg, fill=bg, rounded corners=2pt] {\parbox{0.95\textwidth}{\vskip-0.1cm\printbibliographyinline\vskip0.1cm}};
-    \end{tikzpicture}
-    \twopton{}
-\end{center}
+  \begin{block}{}
+    \parbox{\textwidth}{\printbibliographyinline}
+  \end{block}
 }
 \newcommand{\biblio}{
-  \begin{center}
-    \usebeamercolor{block body}
-    \begin{tikzpicture}
-      \draw node[draw=fg!20!bg, fill=bg, rounded corners=2pt] {\parbox{0.95\textwidth}{\vskip-0.1cm\printbibliography\vskip0.1cm}};
-    \end{tikzpicture}
-    \twopton{}
-\end{center}
+  \begin{block}{}
+    \parbox{\textwidth}{\printbibliography}
+  \end{block}
 }
 \fi
 
