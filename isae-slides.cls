@@ -5,13 +5,18 @@
 \ProvidesClass{isae-slides}[2012/08/14 v0.1 
                LaTeX document class for ISAE slides]
 
-% defs for babel language. Default is english
+% defs for babel language etc.
 \def\@language{english}
 \def\@requirefrench{}
 \DeclareOption{fr}{\def\@language{french}\def\@requirefrench{true}}
 \DeclareOption{en}{\def\@language{english}}
 \DeclareOption{fr-en}{\def\@language{english,french}\def\@requirefrench{true}}
 \DeclareOption{en-fr}{\def\@language{french,english}}
+\def\@noteshandout{}
+\DeclareOption{notes}{\def\@noteshandout{true}}
+\def\@requirebiblatex{}
+\DeclareOption{biblatex}{\def\@requirebiblatex{true}}
+
 
 % This class extends the beamer class
 % Read all the documentclass options; pass them to beamer,
@@ -19,11 +24,12 @@
 \PassOptionsToClass{a4paper}{beamer}
 \DeclareOption*{\InputIfFileExists{\CurrentOption.sup}{}{%
     \PassOptionsToClass{\CurrentOption}{beamer}}}
-\def\@requirebiblatex{}
-\DeclareOption{biblatex}{% use biblatex
-  \def\@requirebiblatex{true}%
-}%
 \ProcessOptions \relax
+\ifx\@noteshandout\@empty
+  \relax
+\else
+  \PassOptionsToClass{handout}{beamer}
+\fi
 \RequirePackage{atbegshi}
 \LoadClass{beamer}
 
@@ -78,6 +84,19 @@
     \twopton{}
 \end{center}
 }
+\fi
+
+% for handouts, 2x2 disposition
+\ifx\@noteshandout\@empty
+  \mode<handout>{
+    \RequirePackage{pgfpages}
+    \pgfpagesuselayout{4 on 1}[a4paper, border shrink=2.5mm, landscape]
+  }
+\else
+  \mode<handout>{
+    \RequirePackage{handoutWithNotes}
+    \pgfpagesuselayout{2 on 1 with notes landscape}[a4paper, border shrink=5mm]
+  }
 \fi
 
 % select theme for beamer

@@ -26,7 +26,34 @@ $(LOCAL_TEXMF)/doc/latex/supaero-lectures:
 	@echo "creating $(LOCAL_TEXMF)/doc/latex/supaero-lectures"
 	mkdir -p $(LOCAL_TEXMF)/doc/latex/supaero-lectures
 
-examples:	install exempleSlides.pdf
+examples:	install exempleSlides.trans.pdf exempleSlides.handout.pdf exempleSlides.notes.pdf exempleSlides.pdf 
+
+exempleSlides.trans.pdf:	exempleSlides.tex
+	@echo "compiling example for transparencies..."
+	cd $(LOCAL_TEXMF)/doc/latex/supaero-lectures/ ; \
+	echo "\PassOptionsToClass{trans}{isae-slides} \input{$<}" | $(PDFLATEX); \
+	$(BIBTEX) $(basename $<) ; \
+	echo "\PassOptionsToClass{trans}{isae-slides} \input{$<}" | $(PDFLATEX); \
+	echo "\PassOptionsToClass{trans}{isae-slides} \input{$<}" | $(PDFLATEX); \
+	mv $(basename $<).pdf $@;\
+
+exempleSlides.handout.pdf:	exempleSlides.tex
+	@echo "compiling example for handouts..."
+	cd $(LOCAL_TEXMF)/doc/latex/supaero-lectures/ ; \
+	echo "\PassOptionsToClass{handout}{isae-slides} \input{$<}" | $(PDFLATEX); \
+	$(BIBTEX) $(basename $<) ; \
+	echo "\PassOptionsToClass{handout}{isae-slides} \input{$<}" | $(PDFLATEX); \
+	echo "\PassOptionsToClass{handout}{isae-slides} \input{$<}" | $(PDFLATEX); \
+	mv $(basename $<).pdf $@;\
+
+exempleSlides.notes.pdf:	exempleSlides.tex
+	@echo "compiling example for handouts with notes..."
+	cd $(LOCAL_TEXMF)/doc/latex/supaero-lectures/ ; \
+	echo "\PassOptionsToClass{notes}{isae-slides} \input{$<}" | $(PDFLATEX); \
+	$(BIBTEX) $(basename $<) ; \
+	echo "\PassOptionsToClass{notes}{isae-slides} \input{$<}" | $(PDFLATEX); \
+	echo "\PassOptionsToClass{notes}{isae-slides} \input{$<}" | $(PDFLATEX); \
+	mv $(basename $<).pdf $@;\
 
 %.pdf:	%.tex
 	@echo "compiling examples..."
@@ -38,4 +65,6 @@ examples:	install exempleSlides.pdf
 
 clean:
 	@echo "cleaning all the files"
-	rm -Rf $(LOCAL_TEXMF)/doc/latex/supaero-lectures/*.pdf
+	cd $(LOCAL_TEXMF)/doc/latex/supaero-lectures/ ; \
+	rm -Rf *.pdf *.aux *.xml *-blx.bib
+
