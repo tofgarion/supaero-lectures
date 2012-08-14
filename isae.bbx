@@ -17,6 +17,8 @@
 {\endlist}
 {\item}
 
+\DeclareFieldFormat{url}{\url{#1}}
+
 \DeclareBibliographyDriver{article}{%
   \usebeamercolor[fg]{bibliography entry author}%
   \usebeamerfont{bibliography entry author}%
@@ -479,7 +481,8 @@
     {\usebibmacro{eprint}}
     {}%
   \newunit\newblock
-  \usebibmacro{url+urldate}%
+  %\usebibmacro{url+urldate}%
+\printfield{url}%
   \newunit\newblock
   \usebibmacro{addendum+pubstate}%
   \newunit\newblock

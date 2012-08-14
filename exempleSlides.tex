@@ -8,6 +8,11 @@
 
 \usepackage{coffee4}
 
+\usepackage{listings}
+\lstset{language=[LaTeX]TeX, extendedchars=true, basicstyle=\ttfamily,
+  commentstyle=\itshape, showstringspaces=false} 
+
+
 \begin{document}
 
 \title[Template \LaTeX{} ISAE]{Présentation template \LaTeX{} ISAE}
@@ -67,6 +72,71 @@ Voici un transparent classique:
 \end{frame}
 % ------------------------------------------------------------ slide -
 
+\section{Options de la classe}
+\label{sec:class}
+
+% Transparent ------------------------------------------------ slide -
+\begin{frame}
+\frametitle{Options de mise en forme}
+
+\vfill
+
+Les options classiques de Beamer peuvent être utilisées
+(\texttt{smaller} etc.). Les options de mise en forme des transparents
+sont les suivantes:
+
+\begin{itemize}
+\item si rien n'est précisé, les transparents
+  utilisent la couleur, les dégradés et les \textit{overlays}
+\item \lstinline!trans!: les transparents utilisent la couleur, les
+  dégradés, mais pas les \textit{overlays} (pour un rétroprojecteur
+  par exemple)
+\item \lstinline!handout!: les transparents sont en N\&B, l'image de
+  la page de garde est simplifiée et les bandeaux de titre sont en
+  noir sur fond blanc. Les transparents sont produits en 4 par page
+\item \lstinline!notes!: idem à \lstinline!handout!, mais une page de
+  note pour que les étudiants puissent prendre des notes personnelles
+  est automatiquement ajoutée à chaque transparent
+\end{itemize}
+
+Le \textit{Makefile} construit tous les exemples correspondants à
+partir de ce fichier.
+
+\vfill
+
+\end{frame}
+% ------------------------------------------------------------ slide -
+
+% Transparent ------------------------------------------------ slide -
+\begin{frame}
+\frametitle{Option de langues}
+
+\vfill
+
+Le paquetage \lstinline!babel! est utilisé. Par défaut, l'anglais est
+la langue sélectionnée. Pour utiliser d'autres langues, on utilise les
+options suivantes:
+
+\begin{itemize}
+\item \lstinline!fr!: langue française
+\item \lstinline!fr-en!: langues française et anglaise chargées,
+  langue française comme langue principale
+\item \lstinline!en-fr!: langues française et anglaise chargées,
+  langue anglaise comme langue principale
+\end{itemize}
+
+\vfill
+
+Dans le cas d'une utilisation multilangues, la commande
+\lstinline!\\setlanguage! permet de changer de langue dans le document
+(utiliser alors \lstinline!french! et \lstinline!english! comme noms
+de langues).
+
+\vfill
+
+\end{frame}
+% ------------------------------------------------------------ slide -
+
 \section{Blocs}
 \label{sec:blocs}
 
@@ -91,8 +161,7 @@ Un exemple de bloc simple. Normalement, pas (plus?) de problèmes avec
 
 \begin{definition}[Ma définition]
 Les définitions, théorèmes etc. fonctionnent. Il faut positionner la
-langue (cf. préambule) pour avoir les noms en français. Ce sera fait
-automatiquement dans la classe finale.
+langue via les options de la classe pour avoir les noms en français.
 \end{definition}
 
 \vfill
@@ -117,7 +186,7 @@ blocs «~normaux~».
 J'utilise biblatex pour la bibliographie. Il reste à changer le style
 beamer pour BibTeX car pour l'instant, il n'est pas très joli.
 
-Une commande permet de n'insérer que des références précises:
+Une commande permet de n'insérer que des références particulières:
 
 \vspace{1cm}
 
@@ -130,19 +199,13 @@ Une commande permet de n'insérer que des références précises:
 \begin{frame}
 \frametitle{Bibliographie}
 
-Une commande permet d'insérer toutes les références qui ont été
-utilisées jusqu'à présent:
+La commande \lstinline!biblio! permet d'insérer toutes les références
+qui ont été utilisées jusqu'à présent:
+
+
 
 \nocite{mittelbach04:_latex}
-
 \biblio{}
-
-\pause
-
-\begin{block}{Bug hunter or feature writer}
-  Toi aussi trouve le bug qui n'affiche pas correctement le petit
-  dessin pour la deuxième référence\ldots
-\end{block}
 
 \end{frame}
 % ------------------------------------------------------------ slide -
