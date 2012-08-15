@@ -94,3 +94,8 @@
 
 % select theme for beamer
 \usetheme{isae}
+
+% misc. commands and def
+\newcommand{\s}{\onslide<+->}
+\newcommand{\p}{\pause}
+\newcommand{\vs}{\vspace{0.25cm}}
