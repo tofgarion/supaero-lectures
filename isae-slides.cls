@@ -42,6 +42,7 @@
 \ifx\@requirefrench\@empty
   \relax
 \else
+\RequirePackage{ae,aecompl,aeguill}
 \uselanguage{French}
 \languagepath{French}
 \fi
