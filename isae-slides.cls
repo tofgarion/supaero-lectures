@@ -16,7 +16,10 @@
 \DeclareOption{notes}{\def\@noteshandout{true}}
 \def\@requirebiblatex{}
 \DeclareOption{biblatex}{\def\@requirebiblatex{true}}
-
+\def\@outline{}
+\DeclareOption{outline}{\def\@outline{true}}
+\def\myoutline{Outline }
+\def\mypartname{of part}
 
 % This class extends the beamer class
 % Read all the documentclass options; pass them to beamer,
@@ -42,9 +45,11 @@
 \ifx\@requirefrench\@empty
   \relax
 \else
-\RequirePackage{ae,aecompl,aeguill}
-\uselanguage{French}
-\languagepath{French}
+  \RequirePackage{ae,aecompl,aeguill}
+  \uselanguage{French}
+  \languagepath{French}
+  \def\myoutline{Plan }
+  \def\mypartname{de la partie}
 \fi
 
 % microtype for spacing
@@ -76,6 +81,52 @@
   \begin{block}{}
     \parbox{\textwidth}{\printbibliography}
   \end{block}
+}
+\fi
+
+% outline 
+\ifx\@outline\@empty
+  \relax
+\else
+\AtBeginPart%
+{%
+  \begin{frame}
+    \frametitle{\myoutline \mypartname ~ \insertpartnumber ~- \insertshortpart}
+    \addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
+
+    \partpage
+
+    \tableofcontents[subsectionstyle=hide]
+  \end{frame}
+}
+% onlyparts command for tableofcontents. Thanks Ulrich Schwarz et
+% al. at http://tex.stackexchange.com/questions/5285/tableofcontents-from-part-commands-in-beamer
+\providecommand\beamer@partintoc[3]{%
+  \ifnum\c@tocdepth=-1\relax
+    % requesting onlyparts.
+    \usebeamerfont{section in toc}
+    #1 - #2
+    \par
+  \fi
+}
+\define@key{beamertoc}{onlyparts}[]{%
+  \c@tocdepth=-1\relax
+}
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{\myoutline\ifx\beamer@partname\undefined\relax\else \mypartname ~ \insertpartnumber ~- \insertshortpart\fi}
+
+    \tableofcontents[sectionstyle=show/shaded, subsectionstyle=show/show/hide]
+  \end{frame}
+}
+\AtBeginSubsection[]
+{
+  \begin{frame}
+    \frametitle{\myoutline\ifx\beamer@partname\undefined\relax\else \mypartname ~ \insertpartnumber ~- \insertshortpart\fi}
+
+    \tableofcontents[sectionstyle=show/shaded, subsectionstyle=show/shaded/hide]
+  \end{frame}
 }
 \fi
 

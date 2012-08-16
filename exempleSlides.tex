@@ -1,5 +1,5 @@
 \RequirePackage{atbegshi}
-\documentclass[fr,biblatex]{isae-slides}
+\documentclass[fr,biblatex,outline]{isae-slides}
 
 \usepackage[utf8]{inputenc}
 \usepackage{wasysym}
@@ -27,19 +27,9 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{Plan}
-  \tableofcontents[part=1,pausesections]
+\begin{frame}{Plan général (avec seulement les parties)}
+  \tableofcontents[onlyparts]
 \end{frame}
-
-\AtBeginSection[]
-{
-  \begin{frame}<beamer>
-    \frametitle{Plan}
-    \tableofcontents[current]
-  \end{frame}
-}
-
-\part<presentation>{Main Part}
 
 \section{Généralités}
 \label{sec:gen}
@@ -70,6 +60,11 @@ Voici un transparent classique:
 
 \end{frame}
 % ------------------------------------------------------------ slide -
+
+\subsection{Une autre sous-section juste pour vérifier...}
+\label{sec:subdeux}
+
+\part<presentation>[Partie pour voir]{Et hop, une partie!}
 
 \section{Options de la classe}
 \label{sec:class}
@@ -108,7 +103,7 @@ partir de ce fichier.
 
 % Transparent ------------------------------------------------ slide -
 \begin{frame}
-\frametitle{Option de langues}
+\frametitle{Options de langues}
 
 \vfill
 
@@ -130,6 +125,31 @@ Dans le cas d'une utilisation multilangues, la commande
 \lstinline!\\setlanguage! permet de changer de langue dans le document
 (utiliser alors \lstinline!french! et \lstinline!english! comme noms
 de langues).
+
+\vfill
+
+\end{frame}
+% ------------------------------------------------------------ slide -
+
+% Transparent ------------------------------------------------ slide -
+\begin{frame}
+\frametitle{Option pour le plan}
+
+\vfill
+
+L'option \lstinline!outline! peut être utilisée pour afficher un plan
+avant chaque section, sous-section etc. Quelques remarques:
+
+\begin{itemize}
+\item le nom utilisé (plan ou \textit{outline}) est configuré
+  automatiquement
+\item le fait qu'il y ait des parties (\lstinline!part!) dans la
+  présentation est géré
+\item on peut utiliser une nouvelle clé pour
+  \lstinline!tableofcontents! qui s'appelle \lstinline!onlyparts!
+  (cf. source du présent document). Elle permet de n'afficher que les
+  parties des transparents pour une présentation générale
+\end{itemize}
 
 \vfill
 
@@ -208,6 +228,8 @@ qui ont été utilisées jusqu'à présent:
 
 \end{frame}
 % ------------------------------------------------------------ slide -
+
+\part<presentation>[Autre partie pour voir]{Et hop, une autre partie!}
 
 \section{Ce qu'il reste à faire\ldots}
 \label{sec:todo}
