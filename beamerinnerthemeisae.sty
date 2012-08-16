@@ -31,6 +31,16 @@
 \setbeamertemplate{section in toc}[ball]
 \setbeamertemplate{subsection in toc}[ball unnumbered]
 
+% part page
+\defbeamertemplate*{part page}{isae theme}[1][]%
+{%
+  \begin{centering}%
+    {\usebeamerfont{part title}\usebeamercolor[fg]{part title}%
+      \insertpartnumber{} - \insertpart}%
+    \vskip1em\par%
+  \end{centering}%
+}%
+
 % blocks, mostly taken from Sylvain Bouveret's progressbar theme
 
 \newbox\isae@blockbox
