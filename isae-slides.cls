@@ -92,7 +92,7 @@
 {%
   \begin{frame}
     \frametitle{\myoutline \mypartname ~ \insertpartnumber ~- \insertshortpart}
-    \addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
+    \addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partname}{\the\c@page}}%
 
     \partpage
 
