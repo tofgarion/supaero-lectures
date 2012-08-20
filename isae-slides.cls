@@ -33,6 +33,7 @@
 \else
   \PassOptionsToClass{handout}{beamer}
 \fi
+% bug with beamer and tikz
 \RequirePackage{atbegshi}
 \LoadClass{beamer}
 
