@@ -54,6 +54,11 @@
 
 % microtype for spacing
 \RequirePackage[babel=true,kerning=true]{microtype}
+\SetExtraKerning%
+    [ name = ttkerning,%
+      context  = french]%
+    { encoding = {OT1,T1}, family={ul9,fvm,tt*} }%
+    { }%
 
 % hyperref package for links
 \RequirePackage{hyperref}
