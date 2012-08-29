@@ -1,12 +1,20 @@
-%% ISAE/SUPAERO document class for exercises
-%% C. Garion, 2011
+%% ISAE document class for exercises
+%% C. Garion, 2012
 %%
 %% Mostly taken from article.cls and "Rolling your own Document Class:
 %% Using LaTeX to keep away from the Dark Side" by Peter Flynn
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{supaero-exercise}[2011/05/22 v0.1 
-               LaTeX document class for SUPAERO exercises]
+\ProvidesClass{isae-exercise}[2012/08/29 v0.1 
+               LaTeX document class for ISAE exercises]
 
+
+% defs for babel language etc.
+\def\@language{english}
+\def\@requirefrench{}
+\DeclareOption{fr}{\def\@language{french}\def\@requirefrench{true}}
+\DeclareOption{en}{\def\@language{english}}
+\DeclareOption{fr-en}{\def\@language{english,french}\def\@requirefrench{true}}
+\DeclareOption{en-fr}{\def\@language{french,english}}
 
 \def\GITAbrHash{}
 \def\GITAuthorDate{}
@@ -33,33 +41,61 @@
 \RequirePackage{fancyhdr}
 \LoadClass{exam}
 
-\newenvironment{nonsolution}%[1][0pt]%
-  {%
-    \ifprintanswers
-      \setbox\z@\vbox\bgroup
-    \else
-      \begingroup
-    \fi
-  }{%
-    \ifprintanswers
-      \egroup
-    \else
-      \endgroup
-    \fi
-  }%
+% etex for more dimens
+\RequirePackage{etex}
 
 % page layout for pages other than first one, see header and footer
 % conf. below
 \RequirePackage[hscale=0.85, vscale=0.90, top=40pt, includeheadfoot]{geometry}
 
-% babel for languages
-\RequirePackage{babel}
+% babel for languages. Beamer uses translator package for theorem
+% etc. names.
+\RequirePackage[\@language]{babel}
+\ifx\@requirefrench\@empty
+  \relax
+\else
+  \RequirePackage{ae,aecompl,aeguill}
+\fi
 
 % microtype for spacing
 \RequirePackage[babel=true,kerning=true]{microtype}
+\SetExtraKerning%
+    [ name = ttkerning,%
+      context  = french]%
+    { encoding = {OT1,T1}, family={ul9,fvm,tt*} }%
+    { }%
 
 % multirow for header
 \RequirePackage{multirow}
+
+% hyperref package for links
+\RequirePackage[pdfversion=1.7, pdftex, colorlinks, urlcolor=blue, pdfstartview=FitH, pdfhighlight={/N}]{hyperref}
+
+% bibliography with biblatex
+\ifx\@requirebiblatex\@empty
+  \relax
+\else
+\RequirePackage[babel]{csquotes}
+\RequirePackage[
+  style=numeric%
+  ]{biblatex}
+\defbibheading{inline-bibliography}{}
+\newcommand{\printbibliographyinline}{%
+  \printbibliography[segment=\therefsegment,heading=inline-bibliography]%
+  \newrefsegment%
+}
+\newcommand{\biblioinline}[1]{
+  \nocite{#1}
+  \begin{block}{}
+    \parbox{\textwidth}{\printbibliographyinline}
+  \end{block}
+}
+\newcommand{\biblio}{
+  \begin{block}{}
+    \parbox{\textwidth}{\printbibliography}
+  \end{block}
+}
+\fi
 
 % graphics
 \RequirePackage[pdftex]{graphicx}
@@ -126,3 +162,19 @@
 
 % no date by default
 \date{}
+
+% new environments
+\newenvironment{nonsolution}%[1][0pt]%
+  {%
+    \ifprintanswers
+      \setbox\z@\vbox\bgroup
+    \else
+      \begingroup
+    \fi
+  }{%
+    \ifprintanswers
+      \egroup
+    \else
+      \endgroup
+    \fi
+  }%
