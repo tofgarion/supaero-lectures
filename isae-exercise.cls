@@ -15,6 +15,8 @@
 \DeclareOption{en}{\def\@language{english}}
 \DeclareOption{fr-en}{\def\@language{english,french}\def\@requirefrench{true}}
 \DeclareOption{en-fr}{\def\@language{french,english}}
+\def\@requirebiblatex{}
+\DeclareOption{biblatex}{\def\@requirebiblatex{true}}
 
 \def\GITAbrHash{}
 \def\GITAuthorDate{}
@@ -79,22 +81,6 @@
 \RequirePackage[
   style=numeric%
   ]{biblatex}
-\defbibheading{inline-bibliography}{}
-\newcommand{\printbibliographyinline}{%
-  \printbibliography[segment=\therefsegment,heading=inline-bibliography]%
-  \newrefsegment%
-}
-\newcommand{\biblioinline}[1]{
-  \nocite{#1}
-  \begin{block}{}
-    \parbox{\textwidth}{\printbibliographyinline}
-  \end{block}
-}
-\newcommand{\biblio}{
-  \begin{block}{}
-    \parbox{\textwidth}{\printbibliography}
-  \end{block}
-}
 \fi
 
 % graphics
