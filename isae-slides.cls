@@ -152,7 +152,48 @@
 % select theme for beamer
 \usetheme{isae}
 
+% command for CC license
+\newcommand{\cclicense}{
+  \begin{frame}[t]
+    \frametitle{License}
+
+    {\small
+
+    \begin{columns}[T]
+      \begin{column}{0.3\textwidth}
+        \begin{tikzpicture}
+          
+        \end{tikzpicture}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+        This work is licensed under the Creative Commons
+        Attribution-NonCommercial-ShareAlike 3.0 Unported license (CC
+        BY-NC-SA 3.0)
+
+        See \url{http://creativecommons.org/licenses/by-nc-sa/3.0/}
+        for more details.        
+      \end{column}
+    \end{columns}
+
+    You are free to Share (copy, distribute and transmite) and to
+    Remix (adapt) this work under the following conditions:
+
+    \begin{tabular}[h]{c p{0.9\textwidth}}
+      \includegraphics[width=0.075\textwidth]{by.png} &
+      \textbf{Attribution} -- You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work).\\
+      \includegraphics[width=0.075\textwidth]{nc.png} &
+      \textbf{Noncommercial} -- You may not use this work for commercial purposes. \\
+      \includegraphics[width=0.075\textwidth]{sa.png} &
+      \textbf{Share Alike} -- If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.
+
+    \end{tabular}
+
+    }
+  \end{frame}
+}
+
 % misc. commands and def
 \newcommand{\s}{\onslide<+->}
 \newcommand{\p}{\pause}
 \newcommand{\vs}{\vspace{0.25cm}}
+\newcommand{\dvs}{\vspace{0.5cm}}
