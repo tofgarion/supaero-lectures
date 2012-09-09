@@ -155,39 +155,50 @@
 % command for CC license
 \newcommand{\cclicense}{
   \begin{frame}[t]
-    \frametitle{License}
+    \frametitle{License CC BY-NC-SA 3.0}
 
     {\small
 
     \begin{columns}[T]
       \begin{column}{0.3\textwidth}
         \begin{tikzpicture}
-          
+          \node[rounded corners, draw=black, fill=black!20] 
+               {\includegraphics[width=0.2\textwidth]{cc.png}\quad 
+                \includegraphics[width=0.2\textwidth]{by.png}\quad
+                \includegraphics[width=0.2\textwidth]{nc.png}\quad
+                \includegraphics[width=0.2\textwidth]{sa.png}
+               };
         \end{tikzpicture}
       \end{column}
       \begin{column}{0.6\textwidth}
         This work is licensed under the Creative Commons
         Attribution-NonCommercial-ShareAlike 3.0 Unported license (CC
         BY-NC-SA 3.0)
-
-        See \url{http://creativecommons.org/licenses/by-nc-sa/3.0/}
-        for more details.        
       \end{column}
     \end{columns}
+
+    \vfill
 
     You are free to Share (copy, distribute and transmite) and to
     Remix (adapt) this work under the following conditions:
 
-    \begin{tabular}[h]{c p{0.9\textwidth}}
-      \includegraphics[width=0.075\textwidth]{by.png} &
-      \textbf{Attribution} -- You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work).\\
-      \includegraphics[width=0.075\textwidth]{nc.png} &
-      \textbf{Noncommercial} -- You may not use this work for commercial purposes. \\
-      \includegraphics[width=0.075\textwidth]{sa.png} &
-      \textbf{Share Alike} -- If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one.
+    \vspace{1em}
 
+    \begin{tabular}[h]{c p{0.8\textwidth}}
+      \multirow{2}{0.075\textwidth}{\includegraphics[width=0.075\textwidth]{by.png}} &
+      \textbf{Attribution} -- You must attribute the work in the
+      manner specified by the author or licensor (but not in any way
+      that suggests that they endorse you or your use of the work).\\ \\[-1em]
+      \multirow{2}{0.075\textwidth}{\includegraphics[width=0.075\textwidth]{nc.png}} &
+      \textbf{Noncommercial} -- You may not use this work for
+      commercial purposes. \\ \\
+      \multirow{2}{0.075\textwidth}{\includegraphics[width=0.075\textwidth]{sa.png}} &
+      \textbf{Share Alike} -- If you alter, transform, or build upon
+      this work, you may distribute the resulting work only under the
+      same or similar license to this one. \\ \\
     \end{tabular}
 
+    See \url{http://creativecommons.org/licenses/by-nc-sa/3.0/}.
     }
   \end{frame}
 }
