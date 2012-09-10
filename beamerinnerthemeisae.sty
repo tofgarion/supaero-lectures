@@ -83,4 +83,55 @@
 \defblock[example]
 \defblock[alerted]
 
+\newenvironment<>{code}[1]{%
+  \begin{actionenv}#2%
+    \def\insertblocktitle{#1}%
+    \par%
+    \usebeamertemplate{block code begin}}
+  {\par%
+    \usebeamertemplate{block code end}%
+  \end{actionenv}}
+
+\newenvironment<>{codesm}[1]{%
+  \begin{actionenv}#2%
+    \def\insertblocktitle{#1}%
+    \par%
+    \usebeamertemplate{block code sm begin}}
+  {\par%
+    \usebeamertemplate{block code sm end}%
+  \end{actionenv}}
+
+\newcommand{\defcodeblock}[1][]{
+\defbeamertemplate*{block code \ifx#1\@empty\else#1\space\fi begin}{isae theme}
+{
+  \setbox\isae@blockbox=\hbox to
+  0.95\textwidth\bgroup\vbox\bgroup\vskip-0.25\baselineskip\raggedright\begin{minipage}{0.95\textwidth}
+    \ifx\insertblocktitle\@empty\else{\usebeamerfont{block code \ifx#1\@empty\else#1\space\fi title}\usebeamercolor[fg]{block title}\insertblocktitle}\\[-0.3cm]% Just to be "babel-safe"
+    \twoptoff{}\tikz\draw[isae@blockline] (0, 0) -- (\textwidth, 0);\twopton{}\fi\usebeamerfont{block body}\ifx\insertblocktitle\@empty\else\global\let\itemize=\isae@itemize\fi \par
+
+    \vskip-1ex
+}
+\defbeamertemplate*{block code \ifx#1\@empty\else#1\space\fi end}{isae theme}
+{
+  \vphantom{y}
+  \global\let\itemize=\isae@tempitemize\end{minipage}\vskip-0.25\baselineskip\egroup\egroup
+  \isae@boxwidth=\wd\isae@blockbox
+  \advance\isae@boxwidth by 0.5\baselineskip
+  \isae@boxheight=\ht\isae@blockbox
+  \advance\isae@boxheight by \dp\isae@blockbox
+  {\parbox[t]{0cm}{
+      \usebeamercolor{block body}
+      \tikz[baseline=(current bounding box.north)]{\draw[draw=fg!20!bg,fill=bg] (0, 0) rectangle (\isae@boxwidth, \isae@boxheight);} 
+    }}
+  {\parbox[t]{0cm}{
+      \vskip0.5\baselineskip
+      \ \hfill{\box\isae@blockbox}\hfill\ 
+    }}\par
+  \vskip-1\baselineskip
+}
+}
+
+\defcodeblock
+\defcodeblock[sm]
+
 \mode<all>
