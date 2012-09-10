@@ -24,11 +24,13 @@
 \definecolor{isae@fgtitle}{rgb}{1,1,1}
 \definecolor{isae@myball}{rgb}{0,0,0}
 \definecolor{isae@blockline}{rgb}{0,0,0}
+\colorlet{isae@bgblock}{isae@fg!20}
 }
 
 \mode<handout>{
 \definecolor{isae@bgtitle}{rgb}{1,1,1}
 \definecolor{isae@fgtitle}{rgb}{0,0,0}
+\colorlet{isae@bgblock}{isae@fg!10}
 }
 
 \mode<presentation>
@@ -48,7 +50,7 @@
 \setbeamercolor{item}{fg=isae@fg,bg=isae@bg}
 
 % blocks
-\setbeamercolor{block}{fg=isae@fg,bg=isae@fg!20!white}
+\setbeamercolor{block}{fg=isae@fg,bg=isae@bgblock}
 \setbeamercolor{block title}{parent=block}
 \setbeamercolor{block body}{parent=block}
 \setbeamercolor{block title alerted}{parent=block title}
