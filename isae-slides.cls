@@ -153,6 +153,8 @@
 \usetheme{isae}
 
 % command for CC license
+\RequirePackage{multirow}
+
 \newcommand{\cclicense}{
   \begin{frame}[t]
     \frametitle{License CC BY-NC-SA 3.0}
