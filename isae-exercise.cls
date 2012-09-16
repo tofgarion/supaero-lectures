@@ -35,7 +35,7 @@
 % This class extends the article class
 % Read all the documentclass options; pass them to article,
 % unless the file "<currentoption>.sup" exists, then it is loaded
-\PassOptionsToClass{a4paper}{article}
+\PassOptionsToClass{a4paper}{exam}
 \DeclareOption*{\InputIfFileExists{\CurrentOption.sup}{}{%
     \PassOptionsToClass{\CurrentOption}{exam}}}
 \ProcessOptions \relax
@@ -149,19 +149,3 @@
 
 % no date by default
 \date{}
-
-% new environments
-\newenvironment{nonsolution}%[1][0pt]%
-  {%
-    \ifprintanswers
-      \setbox\z@\vbox\bgroup
-    \else
-      \begingroup
-    \fi
-  }{%
-    \ifprintanswers
-      \egroup
-    \else
-      \endgroup
-    \fi
-  }%
