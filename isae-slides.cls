@@ -152,6 +152,11 @@
 % select theme for beamer
 \usetheme{isae}
 
+% for beamer overlays with TikZ nodes
+\tikzset{onslide/.code args={<#1>#2}{%
+  \only<#1>{\pgfkeysalso{#2}} 
+}}
+
 % command for CC license
 \RequirePackage{multirow}
 
