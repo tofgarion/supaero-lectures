@@ -44,7 +44,7 @@
 % etc. names.
 \RequirePackage[\@language]{babel}
 \ifx\@requirefrench\@empty
-  \relax
+  \RequirePackage{xspace}
 \else
   \RequirePackage{ae,aecompl,aeguill}
   \uselanguage{French}
