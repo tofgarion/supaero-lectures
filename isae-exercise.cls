@@ -50,12 +50,14 @@
 % conf. below
 \RequirePackage[hscale=0.85, vscale=0.90, top=40pt, includeheadfoot]{geometry}
 
-% babel for languages. Beamer uses translator package for theorem
-% etc. names.
+% babel for languages. Uses translator package for theorem etc. names.
 \RequirePackage[\@language]{babel}
+\RequirePackage{translator}
 \ifx\@requirefrench\@empty
   \relax
 \else
+  \uselanguage{French}
+  \languagepath{French}
   \RequirePackage{ae,aecompl,aeguill}
 \fi
 
@@ -118,7 +120,7 @@
     \large  & & \\
     \cline{1-2}
     & & \\[-1.5ex]
-    \large Auteur  & \large : \@author & \\
+    \large \translate{Author}  & \large : \@author & \\
     \large Public & \large : \public@internal & \\
     \large Date & \large : \@date & \\
     \hline
