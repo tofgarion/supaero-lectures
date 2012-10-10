@@ -50,6 +50,10 @@
 % conf. below
 \RequirePackage[hscale=0.85, vscale=0.90, top=40pt, includeheadfoot]{geometry}
 
+% fonts
+\RequirePackage[T1]{fontenc}
+\RequirePackage{textcomp}
+
 % babel for languages. Uses translator package for theorem etc. names.
 \RequirePackage[\@language]{babel}
 \RequirePackage{translator}
@@ -58,6 +62,7 @@
 \else
   \uselanguage{French}
   \languagepath{French}
+  \deftranslation[to=French]{Audience}{Public}
   \RequirePackage{ae,aecompl,aeguill}
 \fi
 
@@ -66,7 +71,7 @@
 \SetExtraKerning%
     [ name = ttkerning,%
       context  = french]%
-    { encoding = {OT1,T1}, family={ul9,fvm,tt*} }%
+    { encoding = {T1}, family={ul9,fvm,tt*} }%
     { }%
 
 % multirow for header
@@ -121,7 +126,7 @@
     \cline{1-2}
     & & \\[-1.5ex]
     \large \translate{Author}  & \large : \@author & \\
-    \large Public & \large : \public@internal & \\
+    \large \translate{Audience} & \large : \public@internal & \\
     \large Date & \large : \@date & \\
     \hline
   \end{tabular}    
