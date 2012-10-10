@@ -40,6 +40,10 @@
 % etex for more dimens
 \RequirePackage{etex}
 
+% fonts
+\RequirePackage[T1]{fontenc}
+\RequirePackage{textcomp}
+
 % babel for languages. Beamer uses translator package for theorem
 % etc. names.
 \RequirePackage[\@language]{babel}
