@@ -157,6 +157,13 @@
 \renewcommand\familydefault{cmss}
 \RequirePackage[cm]{sfmath}
 
+% % redefine emph
+% \makeatletter
+% \DeclareRobustCommand{\em}{%
+%   \@nomath\em \if b\expandafter\@car\f@series\@nil
+%   \normalfont \else \bfseries \fi}
+% \makeatother
+
 % no indentation
 \setlength{\parindent}{0in}
 
