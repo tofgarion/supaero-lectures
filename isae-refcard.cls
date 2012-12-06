@@ -56,7 +56,13 @@
 \SetExtraKerning%
     [ name = ttkerning,%
       context  = french]%
-    { encoding = {OT1,T1}, family={ul9,fvm,tt*} }%
+    { encoding = {OT1,T1}, 
+      family = {ul9, tt*} }%
+    { }%
+\SetExtraKerning%
+    [ name = uml,%
+      context  = uml]%
+    { encoding = {OT1,T1} }%
     { }%
 
 % hyperref package for links
