@@ -240,6 +240,10 @@
   \fi
 }
 
+% checkboxes
+\RequirePackage{amssymb}
+\checkboxchar{$\Box$}
+
 % default font
 \renewcommand\familydefault{cmss}
 \RequirePackage[cm]{sfmath}
