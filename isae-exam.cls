@@ -17,10 +17,10 @@
 \def\@requirebiblatex{}
 \DeclareOption{biblatex}{\def\@requirebiblatex{true}}
 
-% \newif\ifmarkingscheme
-% \markingschemefalse
-% \DeclareOption{markingscheme}{\markingschemetrue}
-% \DeclareOption{nomarkingscheme}{\markingschemefalse}
+\newif\ifmarks
+\marksfalse
+\DeclareOption{marks}{\markstrue}
+\DeclareOption{nomarks}{\marksfalse}
 
 % This class extends the exam class
 % Read all the documentclass options; pass them to article,
