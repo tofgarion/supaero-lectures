@@ -1,12 +1,32 @@
-\documentclass[addpoints,fr,biblatex]{isae-exam}
+\documentclass[addpoints,fr,biblatex,name,gradetable]{isae-exam}
 
 \usepackage[utf8]{inputenc}
+
+\usepackage{listings}
+\lstset{language=[LaTeX]TeX, extendedchars=true, basicstyle=\ttfamily,
+  commentstyle=\itshape, showstringspaces=false} 
 
 \module{LV102}
 \modulename{Espagno Facilo}
 \uf{UF Langues et Civilisation}
-\title[Exameno de vocabulario, question \thequestion]{Exameno de vocabulario}
-\date{1/1/13}
+\title[Exameno de cultura, question \thequestion]{Exameno de cultura generala}
+\date{1er janvier 2013}
+
+\conditions{Cet examen d'Espagnolo Facilo est composé de
+  \numquestions{} exercices indépendants. Le barême indiqué pour
+  chaque exercice l'est à titre indicatif et sera de tout façon
+  modifié à la testa del cliento comme on dit chez nous.
+
+  Les seuls documents autorisés pour cet examen sont:
+
+  \begin{itemize}
+  \item le dernier numéro de \textit{Sport}
+  \item la biographie non autorisée de Josep Guardiola
+  \end{itemize}
+
+  Merci de ne pas oublier votre nom, votre prénom et votre groupe
+  hein.
+}
 
 \begin{document}
 
@@ -14,6 +34,31 @@
   \basiccoverpage{}
 \end{coverpages}
 
-Blablablablablabla
+Ce document est un exemple d'utilisation de la classe
+\texttt{isae-exam}. Cette classe est prévue pour écrire des examens et
+est dérivée de la classe \texttt{exam}.
+
+\begin{questions}
+\question quel est le meilleur buteur de l'histoire du \textit{Futbol
+  Club Barcelona} (\textit{més que un club})?
+
+\begin{solution}[0pt]
+
+  C'est Lionel «~j'ai pris des hormones~» Messi. Dans le source
+  \LaTeX, l'option \lstinline![0pt]! de l'environnement
+  \lstinline!solution! permet de préciser que l'on ne laisse pas de
+  place pour répondre sur le sujet.
+\end{solution}
+
+\question quel était le docteur attitré du \textit{Futbol
+  Club Barcelona} (\textit{més que un club})?
+
+\begin{solution}[5cm]
+
+  Il paraît que ce serait le docteur Eufemiano Fuentes\ldots Là par
+  contre, on a laissé 5cm pour répondre. Mais par contre, la
+  solution ne prend que la place qu'il faut.
+\end{solution}
+\end{questions}
 
 \end{document}

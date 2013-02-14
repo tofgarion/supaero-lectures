@@ -20,6 +20,11 @@
 \DeclareOption{ensica}{\def\@ensica{true}}
 \def\@supaero{}
 \DeclareOption{supaero}{\def\@supaero{true}}
+\def\@name{}
+\DeclareOption{name}{\def\@name{true}}
+\def\@gradetable{}
+\DeclareOption{gradetable}{\def\@gradetable{true}}
+
 
 \newif\ifmarks
 \marksfalse
@@ -30,10 +35,13 @@
 \newcommand{\module}[1]{\def\module@internal{#1}}
 
 \def\modulename@internal{Blabla}
-\newcommand{\modulename}[1]{\def\module@internal{#1}}
+\newcommand{\modulename}[1]{\def\modulename@internal{#1}}
 
 \def\uf@internal{UF Informatique}
 \newcommand{\uf}[1]{\def\uf@internal{#1}}
+
+\def\conditions@internal{}
+\newcommand{\conditions}[1]{\def\conditions@internal{#1}}
 
 % This class extends the exam class
 % Read all the documentclass options; pass them to article,
@@ -153,6 +161,12 @@
 
 % headers and titlepage
 \RequirePackage{graphicx}
+\RequirePackage{translator}
+
+\deftranslation[to=French]{Name}{Nom}
+\deftranslation[to=French]{First name}{Pr\'enom}
+\deftranslation[to=French]{Group}{Groupe}
+\deftranslation[to=French]{Comments}{Commentaires \'eventuels}
 
 \header{\module@internal}{\shorttitle}{\@date}
 \headrule
@@ -163,6 +177,7 @@
 \renewcommand{\questionlabel}{\bfseries \thequestion.}
 
 \pagestyle{headandfoot}
+
 
 \newcommand\basiccoverpage{
   \null
@@ -178,49 +193,40 @@
 
   \vskip 40pt
 
-  \noindent\rule{\linewidth}{2pt}
+  \ifx\conditions@internal\empty
+    \relax
+  \else
+    \noindent\rule{\linewidth}{2pt}
 
-  {\large
+    {\large \conditions@internal}
 
-    Cette première partie de l'examen est composée de \numquestions{}
-    exercices indépendants. Le barême indiqué pour chaque exercice
-    l'est à titre indicatif et peut être modifié.
+    \noindent\rule{\linewidth}{2pt}
+  \fi
 
-    Les seuls documents autorisés pour cet examen sont:
-    
-    \begin{itemize}
-    \item les notes distribuées en cours (avec vos notes manuscrites)
-    \item les cartes de référence distribuées en cours
-    \end{itemize}
-    
-    Les annales des examens des années précédentes sont interdites. Les
-    téléphones portables doivent être éteints et rangés. L'utilisation
-    d'un ordinateur durant l'examen est interdite.
-    
-    Vous avez normalement la place de répondre sur ce document. Si vous
-    devez utiliser une copie libre, n'oubliez pas d'y indiquer vos noms,
-    prénoms et groupe de PC, ainsi que le numéro précis de la question à
-    laquelle vous répondez.
-  }
-
-  \noindent\rule{\linewidth}{2pt}
 
   \vskip 10pt
-  
+
+  \if\@name\empty
+    \relax
+  \else
   {\huge
-  \makebox[\textwidth]{Nom:\enspace\hrulefill}
+  \makebox[\textwidth]{\translate{Name}:\enspace\hrulefill}
 
   \vspace{5pt}
 
-  \makebox[\textwidth]{Prénom:\enspace\hrulefill}
+  \makebox[\textwidth]{\translate{First name}:\enspace\hrulefill}
 
   \vspace{11pt}
 
-  \makebox[\textwidth]{Groupe:\enspace\hrulefill}
+  \makebox[\textwidth]{\translate{Group}:\enspace\hrulefill}
   }
 
   \vskip 10pt
+  \fi
 
+  \if\@gradetable\empty
+    \relax
+  \else
   ~
   \begin{minipage}[t]{0.32\linewidth}
     \hspace{0cm}
@@ -229,8 +235,9 @@
   \end{minipage}
   \begin{minipage}[t]{0.68\linewidth}
     \vskip 5pt
-    \Large \bfseries Commentaires éventuels:
+    \Large \bfseries \translate{Comments}:
   \end{minipage}
+  \fi
 }
 
 % default font
