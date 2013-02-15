@@ -30,6 +30,10 @@
 \marksdetailfalse
 \DeclareOption{marksdetail}{\marksdetailtrue}
 
+\newif\ifmarkssum
+\markssumfalse
+\DeclareOption{markssum}{\markssumtrue}
+
 \def\module@internal{INXXX}
 \newcommand{\module}[1]{\def\module@internal{#1}}
 
@@ -105,6 +109,8 @@
 \RequirePackage{numprint}
 \nprounddigits{3}
 
+\def\markssum{}
+
 \NewEnviron{marksdetail}{%
   \ifmarksdetail
     \vspace{1em}
@@ -118,14 +124,16 @@
     \end{tabular}
 
     \vspace{0.5em}
+
+    \edef\markssum{\markssum \BODY}
   \else
     \relax
   \fi
 }
 
-\newcommand{\rowemph}{\rowcolor{gray!30}}
-\newcommand{\malus}{\cellcolor{red!30}}
-\newcommand{\bonus}{\cellcolor{green!30}}
+\newcommand{\rowemph}{\expandafter\rowcolor{gray!30}}
+\newcommand{\malus}{\expandafter\cellcolor{red!30}}
+\newcommand{\bonus}{\expandafter\cellcolor{green!30}}
 
 % logo
 \def\logo{logo_isae_compact_color_72.png}
