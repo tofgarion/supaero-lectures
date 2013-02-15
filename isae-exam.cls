@@ -26,10 +26,9 @@
 \DeclareOption{gradetable}{\def\@gradetable{true}}
 
 
-\newif\ifmarks
-\marksfalse
-\DeclareOption{marks}{\markstrue}
-\DeclareOption{nomarks}{\marksfalse}
+\newif\ifmarksdetail
+\marksdetailfalse
+\DeclareOption{marksdetail}{\marksdetailtrue}
 
 \def\module@internal{INXXX}
 \newcommand{\module}[1]{\def\module@internal{#1}}
@@ -99,43 +98,34 @@
   ]{biblatex}
 \fi
 
-% environment and commands
+% marks detail
+\RequirePackage{environ}
+\RequirePackage{colortbl}
+\RequirePackage{xcolor}
+\RequirePackage{numprint}
+\nprounddigits{3}
 
-\newenvironment{nonsolution}%[1][0pt]%
-  {%
-    \ifprintanswers
-      \setbox\z@\vbox\bgroup
-    \else
-      \begingroup
-    \fi
-  }{%
-    \ifprintanswers
-      \egroup
-    \else
-      \endgroup
-    \fi
-  }%
+\NewEnviron{marksdetail}{%
+  \ifmarksdetail
+    \vspace{1em}
 
-% \newcommand\MarkingSchemeEmphasis[1]{%
-%   \def\MarkingScheme@Emphasis{#1}%
-% }
-% \MarkingSchemeEmphasis{}
+    {\bf \translate{Grade details}:}
 
-% \newenvironment{markingscheme}
-%   {%
-%     \ifmarkingscheme
-%       \begingroup
-%       \MarkingScheme@Emphasis
-%     \else
-%       \setbox\z@\vbox\bgroup
-%     \fi
-%   }{%
-%     \ifmarkingscheme
-%       \endgroup
-%     \else
-%       \egroup
-%     \fi
-%   }%
+    \vspace{0.5em}
+
+    \begin{tabular}[h]{>{\bfseries } l | l n{4}{3}}
+      \BODY
+    \end{tabular}
+
+    \vspace{0.5em}
+  \else
+    \relax
+  \fi
+}
+
+\newcommand{\rowemph}{\rowcolor{gray!30}}
+\newcommand{\malus}{\cellcolor{red!30}}
+\newcommand{\bonus}{\cellcolor{green!30}}
 
 % logo
 \def\logo{logo_isae_compact_color_72.png}
@@ -161,12 +151,12 @@
 
 % headers and titlepage
 \RequirePackage{graphicx}
-\RequirePackage{translator}
 
 \deftranslation[to=French]{Name}{Nom}
 \deftranslation[to=French]{First name}{Pr\'enom}
 \deftranslation[to=French]{Group}{Groupe}
 \deftranslation[to=French]{Comments}{Commentaires \'eventuels}
+\deftranslation[to=French]{Grade details}{Notation d\'etaill\'ee}
 
 \header{\module@internal}{\shorttitle}{\@date}
 \headrule
@@ -239,6 +229,23 @@
   \end{minipage}
   \fi
 }
+
+% environment and commands
+
+\newenvironment{nonsolution}%[1][0pt]%
+  {%
+    \ifprintanswers
+      \setbox\z@\vbox\bgroup
+    \else
+      \begingroup
+    \fi
+  }{%
+    \ifprintanswers
+      \egroup
+    \else
+      \endgroup
+    \fi
+  }%
 
 % remaining space in current page
 \newcommand\measurepage[1]{\dimexpr\pagegoal-\pagetotal+#1\textheight\relax}
