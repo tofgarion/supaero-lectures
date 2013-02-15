@@ -7,6 +7,8 @@
 \lstset{language=[LaTeX]TeX, extendedchars=true, basicstyle=\ttfamily,
   commentstyle=\itshape, showstringspaces=false} 
 
+\usepackage{verbatim}
+
 \module{LV102}
 \modulename{Espagno Facilo}
 \uf{UF Langues et Civilisation}
@@ -118,10 +120,15 @@ quel est le meilleur cloube de futchebol du monde?
 \end{questions}
 
 \ifprintanswers
-  Pour finir, ceci n'apparaîtra que dans la correction de l'examen.
+  Pour finir, cette phrase n'apparaîtra que dans la correction de l'examen.
 \else
-  Pour finir, ceci n'apparaîtra pas dans la correction de l'examen.
+  Pour finir, cette phrase n'apparaîtra pas dans la correction de l'examen.
 \fi
+
+\section{Code source du présent document}
+\label{sec:code-source-doc}
+
+\verbatiminput{exempleExam.tex}
 
 \printbibliography
 
