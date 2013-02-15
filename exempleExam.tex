@@ -79,8 +79,34 @@ Les options disponibles pour la classe sont les suivantes:
   de chaque exercice sur la page de couverture
 \end{itemize}
 
-\section{Exemples}
-\label{sec:exemples}
+\subsection{Page de couverture, entêtes et pieds de pages}
+\label{sec:page-de-couverture}
+
+La page de couverture est définie par l'environnement
+\lstinline!coverpages! (cf. section~\ref{sec:code-source-doc}). Une
+macro, \lstinline!\basiccoverpage{}!, est prédéfinie et fournit une
+page de couverture identique à celle de ce document (à condition
+d'utiliser les bonnes options de classe). Tout cela est bien
+évidemment personnalisable en redéfinissant les commandes appropriées.
+
+Quelques commandes permettent de personnaliser la page de couverture
+par défaut et les entêtes et pieds de pages:
+
+\begin{itemize}
+\item \lstinline!\module! permet de donner le code du module concerné
+\item \lstinline!\modulename! permet de donner le nom complet du module
+\item \lstinline!\uf! permet de donner le nom de l'Unité de Formation
+  concernée
+\item \lstinline!\conditions! permet de donner les conditions de
+  l'examen
+\end{itemize}
+
+La commande \lstinline!title! a été redéfinie pour accepter un
+argument optionnel qui sert de titre court (par défaut dans les
+entêtes de page).
+
+\section{Exemples de questions}
+\label{sec:exemples-questions}
 
 La suite de ce document est un exemple d'utilisation de
 l'environnement \lstinline!questions!. En particulier, l'utilisation
