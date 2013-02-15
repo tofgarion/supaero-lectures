@@ -1,6 +1,7 @@
 \documentclass[addpoints,fr,biblatex,name,gradetable]{isae-exam}
 
 \usepackage[utf8]{inputenc}
+\addbibresource{exam.bib}
 
 \usepackage{listings}
 \lstset{language=[LaTeX]TeX, extendedchars=true, basicstyle=\ttfamily,
@@ -34,12 +35,26 @@
   \basiccoverpage{}
 \end{coverpages}
 
+\section{Introduction}
+\label{sec:introduction}
+
 Ce document est un exemple d'utilisation de la classe
 \texttt{isae-exam}. Cette classe est prévue pour écrire des examens et
-est dérivée de la classe \texttt{exam}.
+est dérivée de la classe \texttt{exam}. Les options, commandes,
+environnements et options de personnalisation définis dans la classe
+\texttt{exam} sont donc applicables pour \texttt{isae-exam}
+(cf.~\cite{hirschorn11:_exam}).
+
+\section{Exemples}
+\label{sec:exemples}
+
+La suite de ce document est un exemple d'utilisation de
+l'environnement \lstinline!questions!. En particulier, l'utilisation
+de l'option \lstinline!answers! dans la classe permet de passer en
+mode «~solution~».
 
 \begin{questions}
-\question quel est le meilleur buteur de l'histoire du \textit{Futbol
+\question[1] quel est le meilleur buteur de l'histoire du \textit{Futbol
   Club Barcelona} (\textit{més que un club})?
 
 \begin{solution}[0pt]
@@ -50,7 +65,7 @@ est dérivée de la classe \texttt{exam}.
   place pour répondre sur le sujet.
 \end{solution}
 
-\question quel était le docteur attitré du \textit{Futbol
+\question[1\half] quel était le docteur attitré du \textit{Futbol
   Club Barcelona} (\textit{més que un club})?
 
 \begin{solution}[5cm]
@@ -60,7 +75,7 @@ est dérivée de la classe \texttt{exam}.
   solution ne prend que la place qu'il faut.
 \end{solution}
 
-\question on peut également faire des questions à choix multiples:
+\question[\half] on peut également faire des questions à choix multiples:
 quel est le meilleur cloube de futchebol du monde?
 
 \begin{checkboxes}
@@ -69,5 +84,13 @@ quel est le meilleur cloube de futchebol du monde?
   \choice le FC Barcelone
 \end{checkboxes}
 \end{questions}
+
+\ifprintanswers
+  Pour finir, ceci n'apparaîtra que dans la correction de l'examen.
+\else
+  Pour finir, ceci n'apparaîtra pas dans la correction de l'examen.
+\fi
+
+\printbibliography
 
 \end{document}
