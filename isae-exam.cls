@@ -240,6 +240,9 @@
   \fi
 }
 
+% remaining space in current page
+\newcommand\measurepage[1]{\dimexpr\pagegoal-\pagetotal+#1\textheight\relax}
+
 % checkboxes
 \RequirePackage{amssymb}
 \checkboxchar{$\Box$}
