@@ -225,3 +225,9 @@
 \newcommand{\p}{\pause}
 \newcommand{\vs}{\vspace{0.25cm}}
 \newcommand{\dvs}{\vspace{0.5cm}}
+
+\RequirePackage{pifont}
+\newcommand{\frametitleexercise}[1]{%
+  \frametitle{\hbox{\rlap{\parbox{\textwidth}{\raggedright #1}} ~
+      \rlap{\parbox{0.9\paperwidth}{\raggedleft \ding{46}}}}}
+}
