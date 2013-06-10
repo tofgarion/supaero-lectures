@@ -17,6 +17,8 @@
 \DeclareOption{en-fr}{\def\@language{french,english}}
 \def\@requirebiblatex{}
 \DeclareOption{biblatex}{\def\@requirebiblatex{true}}
+\def\@requirecc{}
+\DeclareOption{cc}{\def\@requirecc{true}}
 
 \def\GITAbrHash{}
 \def\GITAuthorDate{}
@@ -96,6 +98,57 @@
   ]{biblatex}
 \fi
 
+% CC license
+\ifx\@requirecc\@empty
+  \relax
+\else
+\let\Oldenddoc\enddocument%
+\def\enddocument{%
+  \section*{License CC BY-NC-SA 3.0}
+  \label{sec:cc}
+  \begin{minipage}{0.2\textwidth}
+    \begin{tikzpicture}
+      \node[rounded corners, draw=black, fill=black!20] 
+      {\includegraphics[width=0.1\textwidth]{cc.png}\quad 
+        \includegraphics[width=0.1\textwidth]{by.png}\quad
+        \includegraphics[width=0.1\textwidth]{nc.png}\quad
+        \includegraphics[width=0.1\textwidth]{sa.png}
+      };
+    \end{tikzpicture}
+  \end{minipage}
+  \begin{minipage}{0.7\textwidth}
+    This work is licensed under the Creative Commons
+    Attribution-NonCommercial-ShareAlike 3.0 Unported license (CC
+    BY-NC-SA 3.0)
+  \end{minipage}
+  
+  \vspace{1em}
+  
+  You are free to Share (copy, distribute and transmite) and to
+  Remix (adapt) this work under the following conditions:
+  
+  \vspace{1em}
+  
+  \begin{tabular}[h]{c p{0.8\textwidth}}
+    \multirow{2}{0.04\textwidth}{\includegraphics[width=0.04\textwidth]{by.png}} &
+    \textbf{Attribution} -- You must attribute the work in the
+    manner specified by the author or licensor (but not in any way
+    that suggests that they endorse you or your use of the work).\\ \\[-1em]
+    \multirow{2}{0.04\textwidth}{\includegraphics[width=0.04\textwidth]{nc.png}} &
+    \textbf{Noncommercial} -- You may not use this work for
+    commercial purposes. \\ \\
+    \multirow{2}{0.04\textwidth}{\includegraphics[width=0.04\textwidth]{sa.png}} &
+    \textbf{Share Alike} -- If you alter, transform, or build upon
+    this work, you may distribute the resulting work only under the
+    same or similar license to this one. \\ \\
+  \end{tabular}
+  
+  See \url{http://creativecommons.org/licenses/by-nc-sa/3.0/} for more
+  details.
+  \Oldenddoc
+}%
+\fi
+
 % graphics
 \RequirePackage[pdftex]{graphicx}
 
@@ -107,7 +160,9 @@
 }
 
 % header and footer
-\RequirePackage{lastpage}
+%\RequirePackage{lastpage}
+\RequirePackage[pagecontinue=true,alphMult=ab,AlphMulti=AB,fnsymbolmult=true,romanMult=true,RomanMulti=true]{pageslts}
+\AtBeginDocument{\pagenumbering{arabic}}
 
 % textpos
 \RequirePackage[absolute]{textpos}
