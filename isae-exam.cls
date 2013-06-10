@@ -20,20 +20,31 @@
 \DeclareOption{ensica}{\def\@ensica{true}}
 \def\@supaero{}
 \DeclareOption{supaero}{\def\@supaero{true}}
+\def\@name{}
+\DeclareOption{name}{\def\@name{true}}
+\def\@gradetable{}
+\DeclareOption{gradetable}{\def\@gradetable{true}}
 
-\newif\ifmarks
-\marksfalse
-\DeclareOption{marks}{\markstrue}
-\DeclareOption{nomarks}{\marksfalse}
+
+\newif\ifmarksdetail
+\marksdetailfalse
+\DeclareOption{marksdetail}{\marksdetailtrue}
+
+\newif\ifmarkssum
+\markssumfalse
+\DeclareOption{markssum}{\markssumtrue}
 
 \def\module@internal{INXXX}
 \newcommand{\module}[1]{\def\module@internal{#1}}
 
 \def\modulename@internal{Blabla}
-\newcommand{\modulename}[1]{\def\module@internal{#1}}
+\newcommand{\modulename}[1]{\def\modulename@internal{#1}}
 
 \def\uf@internal{UF Informatique}
 \newcommand{\uf}[1]{\def\uf@internal{#1}}
+
+\def\conditions@internal{}
+\newcommand{\conditions}[1]{\def\conditions@internal{#1}}
 
 % This class extends the exam class
 % Read all the documentclass options; pass them to article,
@@ -91,43 +102,105 @@
   ]{biblatex}
 \fi
 
-% environment and commands
+% marks detail
+\RequirePackage{environ}
+\RequirePackage{colortbl}
+\RequirePackage{xcolor}
+\RequirePackage{numprint}
+\RequirePackage{lstdoc}
+\RequirePackage{booktabs}
 
-\newenvironment{nonsolution}%[1][0pt]%
-  {%
-    \ifprintanswers
-      \setbox\z@\vbox\bgroup
-    \else
-      \begingroup
-    \fi
-  }{%
-    \ifprintanswers
-      \egroup
-    \else
-      \endgroup
-    \fi
-  }%
+\nprounddigits{3}
+\colorlet{isae@bgtab}{gray!20}
 
-% \newcommand\MarkingSchemeEmphasis[1]{%
-%   \def\MarkingScheme@Emphasis{#1}%
+\newcounter{ms}
+
+\gdef\markssum\@empty
+\gdef\mymarkssum{}
+
+\def\addtolist#1#2{%
+  \lst@lAddTo#1{#2}
+}
+
+\def\DM#1|#2;{%
+  %\addtocounter{ms}{1}
+  question: \thequestion\\
+  \addtolist{\markssum}{\thequestion,}%
+  %\xdef{\mymarkssum}{\mymarkssum bla}%
+  \markssum{}
+  %\mymarkssum{}\\
+  \expandafter\gdef\csname\thequestion-\thepartno\endcsname{\thequestion-\thepartno-\value{ms}&#1&#2\cr\relax}
+  \lst@BubbleSort{\markssum}
+}
+
+% \newsavebox{\tempbox}
+% \savebox{\tempbox}{
+% \centering
+% \begin{tabular}{llll}
+%   \toprule[1pt]
+%   Number & bla & bli\\
+%   \midrule
+%   \@for\i:=\markssum \do{\csname\i\endcsname}
+%   \vspace{-14pt}\\\bottomrule
+% \end{tabular}
 % }
-% \MarkingSchemeEmphasis{}
 
-% \newenvironment{markingscheme}
-%   {%
-%     \ifmarkingscheme
-%       \begingroup
-%       \MarkingScheme@Emphasis
-%     \else
-%       \setbox\z@\vbox\bgroup
-%     \fi
-%   }{%
-%     \ifmarkingscheme
-%       \endgroup
-%     \else
-%       \egroup
-%     \fi
-%   }%
+\newcommand\initmarkssum[1][0]{%
+  \expandafter\xdef\markssum{\markssum \cellcolor{isae@bgtab}\thequestion & & #1 \cr\relax}
+}
+
+\RequirePackage{datatool}
+\DTLnewdb{marksum}
+
+\newenvironment{marksum}{%
+  \setcounter{ms}{0}
+  \DTLnewrow{marksum}
+  \expandafter\def\expandafter\sortitemaux\expandafter{\thequestion-\thepartno}
+  \sortitemaux{}
+  \DTLnewdbentry{marksum}{sortitem}{\thequestion-\thepartno}
+  \DTLnewdbentry{marksum}{qnumber}{\thequestion-\thepartno}
+  \DTLnewdbentry{marksum}{comment}{blabla pour question \thequestion}
+  \DTLnewdbentry{marksum}{mark}{1}
+}{%
+}%
+
+\newcommand\printmarksum{%
+  \DTLsort{sortitem}{marksum}%
+  \begin{tabular}{l l l l}
+  \DTLforeach*{marksum}{\thesortitem=sortitem,\theqnumber=qnumber,\thecomment=comment,\themark=mark}{%
+    \thesortitem & \theqnumber & \thecomment & \themark\\
+  }%
+  \end{tabular}
+}%
+
+% \RequirePackage{letltxmacro}
+
+% \let\oldQuestion\question
+% \renewcommand{\question}{coucou \oldQuestion}
+
+% \NewEnviron{marksdetail}{%
+%   \ifmarksdetail
+%     \vspace{1em}
+
+%     {\bf \translate{Grade details}:}
+
+%     \vspace{0.5em}
+
+%     \begin{tabular}[h]{>{\bfseries } l | l n{4}{3}}
+%       \BODY
+%     \end{tabular}
+
+%     \vspace{0.5em}
+
+%   \else
+%     \relax
+%   \fi
+% }
+
+
+\newcommand{\rowemph}{\expandafter\rowcolor{gray!30}}
+\newcommand{\malus}{\expandafter\cellcolor{red!30}}
+\newcommand{\bonus}{\expandafter\cellcolor{green!30}}
 
 % logo
 \def\logo{logo_isae_compact_color_72.png}
@@ -154,6 +227,12 @@
 % headers and titlepage
 \RequirePackage{graphicx}
 
+\deftranslation[to=French]{Name}{Nom}
+\deftranslation[to=French]{First name}{Pr\'enom}
+\deftranslation[to=French]{Group}{Groupe}
+\deftranslation[to=French]{Comments}{Commentaires \'eventuels}
+\deftranslation[to=French]{Grade details}{Notation d\'etaill\'ee}
+
 \header{\module@internal}{\shorttitle}{\@date}
 \headrule
 \footer{}{}{\thepage/\numpages}
@@ -163,6 +242,7 @@
 \renewcommand{\questionlabel}{\bfseries \thequestion.}
 
 \pagestyle{headandfoot}
+
 
 \newcommand\basiccoverpage{
   \null
@@ -178,49 +258,40 @@
 
   \vskip 40pt
 
-  \noindent\rule{\linewidth}{2pt}
+  \ifx\conditions@internal\empty
+    \relax
+  \else
+    \noindent\rule{\linewidth}{2pt}
 
-  {\large
+    {\large \conditions@internal}
 
-    Cette première partie de l'examen est composée de \numquestions{}
-    exercices indépendants. Le barême indiqué pour chaque exercice
-    l'est à titre indicatif et peut être modifié.
+    \noindent\rule{\linewidth}{2pt}
+  \fi
 
-    Les seuls documents autorisés pour cet examen sont:
-    
-    \begin{itemize}
-    \item les notes distribuées en cours (avec vos notes manuscrites)
-    \item les cartes de référence distribuées en cours
-    \end{itemize}
-    
-    Les annales des examens des années précédentes sont interdites. Les
-    téléphones portables doivent être éteints et rangés. L'utilisation
-    d'un ordinateur durant l'examen est interdite.
-    
-    Vous avez normalement la place de répondre sur ce document. Si vous
-    devez utiliser une copie libre, n'oubliez pas d'y indiquer vos noms,
-    prénoms et groupe de PC, ainsi que le numéro précis de la question à
-    laquelle vous répondez.
-  }
-
-  \noindent\rule{\linewidth}{2pt}
 
   \vskip 10pt
-  
+
+  \if\@name\empty
+    \relax
+  \else
   {\huge
-  \makebox[\textwidth]{Nom:\enspace\hrulefill}
+  \makebox[\textwidth]{\translate{Name}:\enspace\hrulefill}
 
   \vspace{5pt}
 
-  \makebox[\textwidth]{Prénom:\enspace\hrulefill}
+  \makebox[\textwidth]{\translate{First name}:\enspace\hrulefill}
 
   \vspace{11pt}
 
-  \makebox[\textwidth]{Groupe:\enspace\hrulefill}
+  \makebox[\textwidth]{\translate{Group}:\enspace\hrulefill}
   }
 
   \vskip 10pt
+  \fi
 
+  \if\@gradetable\empty
+    \relax
+  \else
   ~
   \begin{minipage}[t]{0.32\linewidth}
     \hspace{0cm}
@@ -229,9 +300,34 @@
   \end{minipage}
   \begin{minipage}[t]{0.68\linewidth}
     \vskip 5pt
-    \Large \bfseries Commentaires éventuels:
+    \Large \bfseries \translate{Comments}:
   \end{minipage}
+  \fi
 }
+
+% environment and commands
+
+\newenvironment{nonsolution}%[1][0pt]%
+  {%
+    \ifprintanswers
+      \setbox\z@\vbox\bgroup
+    \else
+      \begingroup
+    \fi
+  }{%
+    \ifprintanswers
+      \egroup
+    \else
+      \endgroup
+    \fi
+  }%
+
+% remaining space in current page
+\newcommand\measurepage[1]{\dimexpr\pagegoal-\pagetotal+#1\textheight\relax}
+
+% checkboxes
+\RequirePackage{amssymb}
+\checkboxchar{$\Box$}
 
 % default font
 \renewcommand\familydefault{cmss}
