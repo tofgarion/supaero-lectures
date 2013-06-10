@@ -98,14 +98,18 @@
   ]{biblatex}
 \fi
 
+% graphics
+\RequirePackage[pdftex]{graphicx}
+
 % CC license
 \ifx\@requirecc\@empty
   \relax
 \else
+\RequirePackage{tikz}
 \let\Oldenddoc\enddocument%
 \def\enddocument{%
   \section*{License CC BY-NC-SA 3.0}
-  \label{sec:cc}
+  \label{sec:license}
   \begin{minipage}{0.2\textwidth}
     \begin{tikzpicture}
       \node[rounded corners, draw=black, fill=black!20] 
@@ -147,10 +151,18 @@
   details.
   \Oldenddoc
 }%
+\newsavebox{\ccbox}%
+\savebox{\ccbox}{
+  \begin{tikzpicture}[baseline={([yshift={-4\ht\strutbox}]current bounding box.north)}]
+    \node[rounded corners, draw=black, fill=black!20] 
+    {\includegraphics[width=0.1\textwidth]{cc.png}\quad 
+      \includegraphics[width=0.1\textwidth]{by.png}\quad
+      \includegraphics[width=0.1\textwidth]{nc.png}\quad
+      \includegraphics[width=0.1\textwidth]{sa.png}
+    };
+  \end{tikzpicture}
+}
 \fi
-
-% graphics
-\RequirePackage[pdftex]{graphicx}
 
 % title with shorttitle
 \renewcommand\title{\@dblarg\mytitlecmd}
@@ -193,13 +205,21 @@
   \end{tabular}    
 }{}%
 
+\ifx\@requirecc\@empty
 \firstpagefooter{%
   \tt Revision~\GITAbrHash, \GITAuthorDate, \GITAuthorName.}%
   {}%
   {\thepage/\pageref{LastPage}}%
+\else
+\firstpagefooter{%
+  \resizebox{0.1\linewidth}{!}{\usebox{\ccbox}}
+  }%
+  {\tt Revision~\GITAbrHash, \GITAuthorDate, \GITAuthorName.}%
+  {\thepage/\pageref{LastPage}}%
+\fi
 
 \runningheader{\module@internal}{\shorttitle \ifprintanswers { }- solution\fi}{\public@internal}%
-\runningfooter{}{}{\thepage/\pageref{LastPage}}
+\runningfooter{\ifx\@requirecc\@empty\else\resizebox{0.1\linewidth}{!}{\usebox{\ccbox}}\fi}{}{\thepage/\pageref{LastPage}}
 
 \runningheadrule{}
 \footrule{}
