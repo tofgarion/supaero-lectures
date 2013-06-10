@@ -107,29 +107,96 @@
 \RequirePackage{colortbl}
 \RequirePackage{xcolor}
 \RequirePackage{numprint}
+\RequirePackage{lstdoc}
+\RequirePackage{booktabs}
+
 \nprounddigits{3}
+\colorlet{isae@bgtab}{gray!20}
 
-\def\markssum{}
+\newcounter{ms}
 
-\NewEnviron{marksdetail}{%
-  \ifmarksdetail
-    \vspace{1em}
+\gdef\markssum\@empty
+\gdef\mymarkssum{}
 
-    {\bf \translate{Grade details}:}
-
-    \vspace{0.5em}
-
-    \begin{tabular}[h]{>{\bfseries } l | l n{4}{3}}
-      \BODY
-    \end{tabular}
-
-    \vspace{0.5em}
-
-    \edef\markssum{\markssum \BODY}
-  \else
-    \relax
-  \fi
+\def\addtolist#1#2{%
+  \lst@lAddTo#1{#2}
 }
+
+\def\DM#1|#2;{%
+  %\addtocounter{ms}{1}
+  question: \thequestion\\
+  \addtolist{\markssum}{\thequestion,}%
+  %\xdef{\mymarkssum}{\mymarkssum bla}%
+  \markssum{}
+  %\mymarkssum{}\\
+  \expandafter\gdef\csname\thequestion-\thepartno\endcsname{\thequestion-\thepartno-\value{ms}&#1&#2\cr\relax}
+  \lst@BubbleSort{\markssum}
+}
+
+% \newsavebox{\tempbox}
+% \savebox{\tempbox}{
+% \centering
+% \begin{tabular}{llll}
+%   \toprule[1pt]
+%   Number & bla & bli\\
+%   \midrule
+%   \@for\i:=\markssum \do{\csname\i\endcsname}
+%   \vspace{-14pt}\\\bottomrule
+% \end{tabular}
+% }
+
+\newcommand\initmarkssum[1][0]{%
+  \expandafter\xdef\markssum{\markssum \cellcolor{isae@bgtab}\thequestion & & #1 \cr\relax}
+}
+
+\RequirePackage{datatool}
+\DTLnewdb{marksum}
+
+\newenvironment{marksum}{%
+  \setcounter{ms}{0}
+  \DTLnewrow{marksum}
+  \expandafter\def\expandafter\sortitemaux\expandafter{\thequestion-\thepartno}
+  \sortitemaux{}
+  \DTLnewdbentry{marksum}{sortitem}{\thequestion-\thepartno}
+  \DTLnewdbentry{marksum}{qnumber}{\thequestion-\thepartno}
+  \DTLnewdbentry{marksum}{comment}{blabla pour question \thequestion}
+  \DTLnewdbentry{marksum}{mark}{1}
+}{%
+}%
+
+\newcommand\printmarksum{%
+  \DTLsort{sortitem}{marksum}%
+  \begin{tabular}{l l l l}
+  \DTLforeach*{marksum}{\thesortitem=sortitem,\theqnumber=qnumber,\thecomment=comment,\themark=mark}{%
+    \thesortitem & \theqnumber & \thecomment & \themark\\
+  }%
+  \end{tabular}
+}%
+
+% \RequirePackage{letltxmacro}
+
+% \let\oldQuestion\question
+% \renewcommand{\question}{coucou \oldQuestion}
+
+% \NewEnviron{marksdetail}{%
+%   \ifmarksdetail
+%     \vspace{1em}
+
+%     {\bf \translate{Grade details}:}
+
+%     \vspace{0.5em}
+
+%     \begin{tabular}[h]{>{\bfseries } l | l n{4}{3}}
+%       \BODY
+%     \end{tabular}
+
+%     \vspace{0.5em}
+
+%   \else
+%     \relax
+%   \fi
+% }
+
 
 \newcommand{\rowemph}{\expandafter\rowcolor{gray!30}}
 \newcommand{\malus}{\expandafter\cellcolor{red!30}}
