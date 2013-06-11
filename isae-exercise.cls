@@ -106,8 +106,11 @@
   \relax
 \else
 \RequirePackage{tikz}
+
 \let\Oldenddoc\enddocument%
 \def\enddocument{%
+  \selectlanguage{english}
+
   \section*{License CC BY-NC-SA 3.0}
   \label{sec:license}
   \begin{minipage}{0.2\textwidth}
