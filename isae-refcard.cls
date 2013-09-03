@@ -17,6 +17,7 @@
 \DeclareOption{en-fr}{\def\@language{french,english}}
 \def\@requirebiblatex{}
 \DeclareOption{biblatex}{\def\@requirebiblatex{true}}
+\DeclareOption{cc}{\def\@requirecc{true}}
 
 \def\GITAbrHash{}
 \def\GITAuthorDate{}
@@ -89,14 +90,31 @@
 }
 
 % headers and footers
+\ifx\@requirecc\@empty
+  \relax
+\else
+\RequirePackage{tikz}
+\fi
+
 \RequirePackage{fancyhdr}
 \fancypagestyle{headandfoot}{
   \lhead{}
   \chead{}
   \rhead{}
   \lfoot{\Large \mytitle{} -- \@author}
-  \cfoot{}
-  \rfoot{\Large \module@internal}
+  \cfoot{\ifx\@requirecc\@empty\relax\else\Large \module@internal\fi%
+  }
+  \rfoot{\ifx\@requirecc\Large \module@internal\else%
+    \begin{tikzpicture}%
+      \node[rounded corners, draw=black, fill=black!20]%
+      {\includegraphics[width=0.015\textwidth]{cc.png}\quad% 
+        \includegraphics[width=0.015\textwidth]{by.png}\quad%
+        \includegraphics[width=0.015\textwidth]{nc.png}\quad%
+        \includegraphics[width=0.015\textwidth]{sa.png}%
+      };%
+    \end{tikzpicture}%
+    \fi%
+  }
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0.4pt}
 }
