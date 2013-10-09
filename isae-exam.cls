@@ -73,6 +73,7 @@
   \languagepath{French}
   \deftranslation[to=French]{Audience}{Public}
   \RequirePackage{ae,aecompl,aeguill}
+  \frenchbsetup{ItemLabels=\textendash}
 \fi
 
 % microtype for spacing
