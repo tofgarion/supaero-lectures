@@ -171,7 +171,7 @@
 \deftranslation[to=French]{Comments}{Commentaires \'eventuels}
 \deftranslation[to=French]{Grade details}{Notation d\'etaill\'ee}
 
-\header{\module@internal}{\shorttitle\ifprintanswers { }- solution\fi}{\@date}
+\header{\module@internal}{\shorttitle, question \thequestion\ifprintanswers { }- solution\fi}{\@date}
 \headrule
 \footer{}{}{\thepage/\numpages}
 \footrule
@@ -182,6 +182,7 @@
 \pagestyle{headandfoot}
 
 \newcommand\basiccoverpage{
+\begin{coverpages}
   \null
   \vskip 30pt
 
@@ -247,10 +248,10 @@
     \Large \bfseries \translate{Comments}:
   \end{minipage}
   \fi
+\end{coverpages}
 }
 
-% environment and commands
-
+% environments and commands
 \newenvironment{nonsolution}%[1][0pt]%
   {%
     \ifprintanswers
