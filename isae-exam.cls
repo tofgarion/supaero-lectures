@@ -157,8 +157,8 @@
 % headers and titlepage
 \RequirePackage{graphicx}
 \RequirePackage[absolute]{textpos}
-\setlength{\TPHorizModule}{0.3\textwidth}
-\setlength{\TPVertModule}{\TPHorizModule}
+\setlength{\TPHorizModule}{0.5\textwidth}
+\setlength{\TPVertModule}{0.1\textheight}
 \textblockorigin{2em}{3em}
 
 \deftranslation[to=French]{Name}{Nom}
@@ -183,7 +183,7 @@
   \vskip 30pt
 
   \ifprintanswers
-  \begin{textblock}{1}(1,0)
+  \begin{textblock}{1}(1,1)
     \tikz \node[rounded corners, draw=red!80, ultra thick, rotate=30]%
     {\Huge\bf \textcolor{red}{\texttt{Solution}}};
   \end{textblock}
