@@ -129,8 +129,8 @@
 }
 
 \newcommand{\rowemph}{\expandafter\rowcolor{gray!30}}
-\newcommand{\malus}{\expandafter\cellcolor{red!30}}
-\newcommand{\bonus}{\expandafter\cellcolor{green!30}}
+\newcommand{\malus}{\expandafter\rowcolor{red!30}}
+\newcommand{\bonus}{\expandafter\rowcolor{green!30}}
 
 % logo
 \def\logo{logo_isae_compact_color_72.png}
