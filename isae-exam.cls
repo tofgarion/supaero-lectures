@@ -110,11 +110,7 @@
 
 \NewEnviron{marksdetail}{%
   \ifmarksdetail
-    \vspace{1em}
-
-    {\bf \translate{Grade details}}
-
-    \vspace{0.5em}
+    \section*{\translate{Grade details}}
 
     \BODY
   \else
