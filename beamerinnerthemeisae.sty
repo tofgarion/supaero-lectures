@@ -49,7 +49,8 @@
 
 % The ultimate trick to prevent the itemize-inside-blocks bug from happening...
 \let\isae@tempitemize=\itemize
-\def\isae@itemize{\ifhmode\else\vskip-0.85\topsep\fi\isae@tempitemize}
+%\def\isae@itemize{\ifhmode\else\vskip-0.85\topsep\fi\isae@tempitemize}
+\def\isae@itemize{\isae@tempitemize}
 
 %%% Bruno's factorized version begins %%%
 
@@ -69,11 +70,11 @@
     \advance\isae@boxheight by \dp\isae@blockbox
     {\parbox[t]{0cm}{
       \usebeamercolor{block body\ifx#1\@empty\else\space#1\fi}
-      \tikz[baseline=(current bounding box.north)]{\draw[draw=fg!20!bg,fill=bg, rounded corners=2pt] (0, 0) rectangle (\isae@boxwidth, \isae@boxheight);} 
+      \tikz[baseline=(current bounding box.north)]{\draw[draw=fg!20!bg,fill=bg, rounded corners=2pt] (0, 0) rectangle (\isae@boxwidth, \isae@boxheight);}
     }}
   {\parbox[t]{0cm}{
       \vskip0.5\baselineskip
-      \ \hfill{\box\isae@blockbox}\hfill\ 
+      \ \hfill{\box\isae@blockbox}\hfill\
     }}\par
     \vskip-1\baselineskip
   }
@@ -121,11 +122,11 @@
   \advance\isae@boxheight by \dp\isae@blockbox
   {\parbox[t]{0cm}{
       \usebeamercolor{block body}
-      \tikz[baseline=(current bounding box.north)]{\draw[draw=fg!20!bg,fill=bg] (0, 0) rectangle (\isae@boxwidth, \isae@boxheight);} 
+      \tikz[baseline=(current bounding box.north)]{\draw[draw=fg!20!bg,fill=bg] (0, 0) rectangle (\isae@boxwidth, \isae@boxheight);}
     }}
   {\parbox[t]{0cm}{
       \vskip0.5\baselineskip
-      \ \hfill{\box\isae@blockbox}\hfill\ 
+      \ \hfill{\box\isae@blockbox}\hfill\
     }}\par
   \vskip-1\baselineskip
 }
