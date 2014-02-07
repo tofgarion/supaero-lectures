@@ -24,6 +24,7 @@
 \DeclareOption{name}{\def\@name{true}}
 \def\@gradetable{}
 \DeclareOption{gradetable}{\def\@gradetable{true}}
+\DeclareOption{cc}{\def\@requirecc{true}}
 
 \newif\ifmarksdetail
 \marksdetailfalse
@@ -147,6 +148,73 @@
   \def\logo{logo_supaero_compact_color_72.png}
 \fi
 
+% CC license
+\ifx\@requirecc\@empty
+  \relax
+\else
+\RequirePackage{tikz}
+\RequirePackage{multirow}
+
+\let\Oldenddoc\enddocument%
+\def\enddocument{%
+  \selectlanguage{english}
+
+  \section*{License CC BY-NC-SA 3.0}
+  \label{sec:license}
+  \begin{minipage}{0.2\textwidth}
+    \begin{tikzpicture}
+      \node[rounded corners, draw=black, fill=black!20]
+      {\includegraphics[width=0.1\textwidth]{cc.png}\quad
+        \includegraphics[width=0.1\textwidth]{by.png}\quad
+        \includegraphics[width=0.1\textwidth]{nc.png}\quad
+        \includegraphics[width=0.1\textwidth]{sa.png}
+      };
+    \end{tikzpicture}
+  \end{minipage}
+  \begin{minipage}{0.7\textwidth}
+    This work is licensed under the Creative Commons
+    Attribution-NonCommercial-ShareAlike 3.0 Unported license (CC
+    BY-NC-SA 3.0)
+  \end{minipage}
+
+  \vspace{1em}
+
+  You are free to Share (copy, distribute and transmite) and to
+  Remix (adapt) this work under the following conditions:
+
+  \vspace{1em}
+
+  \begin{tabular}[h]{c p{0.8\textwidth}}
+    \multirow{2}{0.04\textwidth}{\includegraphics[width=0.04\textwidth]{by.png}} &
+    \textbf{Attribution} -- You must attribute the work in the
+    manner specified by the author or licensor (but not in any way
+    that suggests that they endorse you or your use of the work).\\ \\[-1em]
+    \multirow{2}{0.04\textwidth}{\includegraphics[width=0.04\textwidth]{nc.png}} &
+    \textbf{Noncommercial} -- You may not use this work for
+    commercial purposes. \\ \\
+    \multirow{2}{0.04\textwidth}{\includegraphics[width=0.04\textwidth]{sa.png}} &
+    \textbf{Share Alike} -- If you alter, transform, or build upon
+    this work, you may distribute the resulting work only under the
+    same or similar license to this one. \\ \\
+  \end{tabular}
+
+  See \url{http://creativecommons.org/licenses/by-nc-sa/3.0/} for more
+  details.
+  \Oldenddoc
+}%
+\newsavebox{\ccbox}%
+\savebox{\ccbox}{
+  \begin{tikzpicture}[baseline={([yshift={-4\ht\strutbox}]current bounding box.north)}]
+    \node[rounded corners, draw=black, fill=black!20]
+    {\includegraphics[width=0.1\textwidth]{cc.png}\quad
+      \includegraphics[width=0.1\textwidth]{by.png}\quad
+      \includegraphics[width=0.1\textwidth]{nc.png}\quad
+      \includegraphics[width=0.1\textwidth]{sa.png}
+    };
+  \end{tikzpicture}
+}
+\fi
+
 % title with shorttitle
 \renewcommand\title{\@dblarg\mytitlecmd}
 \long\def\mytitlecmd[#1]#2{%
@@ -169,8 +237,9 @@
 
 \header{\module@internal}{\shorttitle, question \thequestion\ifprintanswers { }- solution\fi}{\@date}
 \headrule
-\footer{}{}{\thepage/\numpages}
-\footrule
+\footer{\ifx\@requirecc\@empty\else\resizebox{0.1\linewidth}{!}{\usebox{\ccbox}}\fi}{}{\thepage/\numpages}
+\footrule{}
+
 \coverheader{\includegraphics[width=0.15\textwidth]{\logo}}{}{\Large
   \uf@internal{}}
 \renewcommand{\questionlabel}{\bfseries \thequestion.}
