@@ -2,7 +2,7 @@
 %% C. Garion, 2012
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{isae-slides}[2012/08/14 v0.1 
+\ProvidesClass{isae-slides}[2012/08/14 v0.1
                LaTeX document class for ISAE slides]
 
 % defs for babel language etc.
@@ -62,7 +62,7 @@
 \SetExtraKerning%
     [ name = ttkerning,%
       context  = french]%
-    { encoding = {OT1,T1}, 
+    { encoding = {OT1,T1},
       family = {ul9, tt*} }%
     { }%
 \SetExtraKerning%
@@ -87,6 +87,13 @@
   \printbibliography[segment=\therefsegment,heading=inline-bibliography]%
   \newrefsegment%
 }
+
+\newcommand{\printbibliographyinlineblock}{%
+  \begin{block}{}
+    \parbox{\textwidth}{\printbibliographyinline}
+  \end{block}
+}
+
 \newcommand{\biblioinline}[1]{
   \nocite{#1}
   \begin{block}{}
@@ -100,7 +107,7 @@
 }
 \fi
 
-% outline 
+% outline
 \ifx\@outline\@empty
   \relax
 \else
@@ -164,7 +171,7 @@
 
 % for beamer overlays with TikZ nodes
 \tikzset{onslide/.code args={<#1>#2}{%
-  \only<#1>{\pgfkeysalso{#2}} 
+  \only<#1>{\pgfkeysalso{#2}}
 }}
 
 % command for CC license
@@ -179,8 +186,8 @@
     \begin{columns}[T]
       \begin{column}{0.3\textwidth}
         \begin{tikzpicture}
-          \node[rounded corners, draw=black, fill=black!20] 
-               {\includegraphics[width=0.2\textwidth]{cc.png}\quad 
+          \node[rounded corners, draw=black, fill=black!20]
+               {\includegraphics[width=0.2\textwidth]{cc.png}\quad
                 \includegraphics[width=0.2\textwidth]{by.png}\quad
                 \includegraphics[width=0.2\textwidth]{nc.png}\quad
                 \includegraphics[width=0.2\textwidth]{sa.png}
