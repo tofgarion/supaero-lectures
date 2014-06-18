@@ -24,6 +24,7 @@
 \DeclareOption{name}{\def\@name{true}}
 \def\@gradetable{}
 \DeclareOption{gradetable}{\def\@gradetable{true}}
+\def\@requirecc{}
 \DeclareOption{cc}{\def\@requirecc{true}}
 
 \newif\ifmarksdetail
