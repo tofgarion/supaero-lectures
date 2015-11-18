@@ -24,7 +24,7 @@
 % This class extends the beamer class
 % Read all the documentclass options; pass them to beamer,
 % unless the file "<currentoption>.sup" exists, then it is loaded
-\PassOptionsToClass{a4paper}{beamer}
+\PassOptionsToClass{a4paper,xcolor={hyperref,x11names}}{beamer}
 \DeclareOption*{\InputIfFileExists{\CurrentOption.sup}{}{%
     \PassOptionsToClass{\CurrentOption}{beamer}}}
 \ProcessOptions \relax
