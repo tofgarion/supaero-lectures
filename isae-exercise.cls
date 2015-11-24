@@ -4,7 +4,7 @@
 %% Mostly taken from article.cls and "Rolling your own Document Class:
 %% Using LaTeX to keep away from the Dark Side" by Peter Flynn
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{isae-exercise}[2012/08/29 v0.1 
+\ProvidesClass{isae-exercise}[2012/08/29 v0.1
                LaTeX document class for ISAE exercises]
 
 
@@ -74,7 +74,7 @@
 \SetExtraKerning%
     [ name = ttkerning,%
       context  = french]%
-    { encoding = {OT1,T1}, 
+    { encoding = {OT1,T1},
       family = {ul9, tt*} }%
     { }%
 \SetExtraKerning%
@@ -116,8 +116,8 @@
   \label{sec:license}
   \begin{minipage}{0.2\textwidth}
     \begin{tikzpicture}
-      \node[rounded corners, draw=black, fill=black!20] 
-      {\includegraphics[width=0.1\textwidth]{cc.png}\quad 
+      \node[rounded corners, draw=black, fill=black!20]
+      {\includegraphics[width=0.1\textwidth]{cc.png}\quad
         \includegraphics[width=0.1\textwidth]{by.png}\quad
         \includegraphics[width=0.1\textwidth]{nc.png}\quad
         \includegraphics[width=0.1\textwidth]{sa.png}
@@ -129,14 +129,14 @@
     Attribution-NonCommercial-ShareAlike 3.0 Unported license (CC
     BY-NC-SA 3.0)
   \end{minipage}
-  
+
   \vspace{1em}
-  
+
   You are free to Share (copy, distribute and transmite) and to
   Remix (adapt) this work under the following conditions:
-  
+
   \vspace{1em}
-  
+
   \begin{tabular}[h]{c p{0.8\textwidth}}
     \multirow{2}{0.04\textwidth}{\includegraphics[width=0.04\textwidth]{by.png}} &
     \textbf{Attribution} -- You must attribute the work in the
@@ -150,7 +150,7 @@
     this work, you may distribute the resulting work only under the
     same or similar license to this one. \\ \\
   \end{tabular}
-  
+
   See \url{http://creativecommons.org/licenses/by-nc-sa/3.0/} for more
   details.
   \Oldenddoc
@@ -158,8 +158,8 @@
 \newsavebox{\ccbox}%
 \savebox{\ccbox}{
   \begin{tikzpicture}[baseline={([yshift={-4\ht\strutbox}]current bounding box.north)}]
-    \node[rounded corners, draw=black, fill=black!20] 
-    {\includegraphics[width=0.1\textwidth]{cc.png}\quad 
+    \node[rounded corners, draw=black, fill=black!20]
+    {\includegraphics[width=0.1\textwidth]{cc.png}\quad
       \includegraphics[width=0.1\textwidth]{by.png}\quad
       \includegraphics[width=0.1\textwidth]{nc.png}\quad
       \includegraphics[width=0.1\textwidth]{sa.png}
@@ -189,7 +189,7 @@
 \firstpageheader{}{%
   \ifprintanswers
   \begin{textblock}{1}(1,0)
-    \tikz \node[rounded corners, draw=red!80, ultra thick, rotate=30]% 
+    \tikz \node[rounded corners, draw=red!80, ultra thick, rotate=30]%
     {\Huge\bf \textcolor{red}{\texttt{Solution}}};
   \end{textblock}
   \fi
@@ -206,7 +206,7 @@
     \large \translate{Audience} & \large : \public@internal & \\
     \large Date & \large : \@date & \\
     \hline
-  \end{tabular}    
+  \end{tabular}
 }{}%
 
 \ifx\@requirecc\@empty
