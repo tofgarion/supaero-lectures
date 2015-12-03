@@ -41,6 +41,7 @@
 \DeclareOption*{\InputIfFileExists{\CurrentOption.sup}{}{%
     \PassOptionsToClass{\CurrentOption}{exam}}}
 \ProcessOptions \relax
+\RequirePackage[hyperref,x11names]{xcolor}
 \RequirePackage{atbegshi}
 \RequirePackage{fancyhdr}
 \LoadClass{exam}
