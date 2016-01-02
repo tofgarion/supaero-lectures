@@ -128,7 +128,7 @@
   \ifnum\c@tocdepth=-1\relax
     % requesting onlyparts.
     \usebeamerfont{section in toc}
-    #1 - #2
+    \hyperlink{Navigation#3}{#1 - #2}
     \par
   \fi
 }
