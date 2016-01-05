@@ -14,6 +14,8 @@
 \DeclareOption{en-fr}{\def\@language{french,english}}
 \def\@noteshandout{}
 \DeclareOption{notes}{\def\@noteshandout{true}}
+\def\@slideshandout{}
+\DeclareOption{hslides}{\def\@slideshandout{true}}
 \def\@requirebiblatex{}
 \DeclareOption{biblatex}{\def\@requirebiblatex{true}}
 \def\@outline{}
@@ -32,6 +34,12 @@
   \relax
 \else
   \PassOptionsToClass{handout}{beamer}
+\fi
+\ifx\@slideshandout\@empty
+  \relax
+\else
+  \PassOptionsToClass{handout}{beamer}
+  \def\slideshandout{}
 \fi
 % bug with beamer and tikz
 \RequirePackage{atbegshi}
@@ -155,10 +163,14 @@
 
 % for handouts, 2x2 disposition
 \ifx\@noteshandout\@empty
+\ifx\@slideshandout\@empty
   \mode<handout>{
     \RequirePackage{pgfpages}
     \pgfpagesuselayout{4 on 1}[a4paper, border shrink=2.5mm, landscape]
   }
+\else
+\relax
+\fi
 \else
   \mode<handout>{
     \RequirePackage{handoutWithNotes}

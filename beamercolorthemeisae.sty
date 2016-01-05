@@ -2,7 +2,7 @@
 
 % Beamer theme by Christophe Garion for ISAE presentation
 %
-% Vased on the progressbar theme by Sylvain Bouveret
+% Based on the progressbar theme by Sylvain Bouveret
 % <sylvain[dot]bouveret[aT]cert[DoT]fr> feb. 2007 version 0.31 and a
 % personal adaptation of progressbar theme
 %
@@ -29,6 +29,7 @@
 \colorlet{isae@bgnodeemph}{isae@fg!40}
 }
 
+\ifx\slideshandout\undefined
 \mode<handout>{
 \definecolor{isae@bgtitle}{rgb}{1,1,1}
 \definecolor{isae@fgtitle}{rgb}{0,0,0}
@@ -36,6 +37,9 @@
 \colorlet{isae@bgnode}{isae@fg!10}
 \colorlet{isae@bgnodeemph}{isae@fg!30}
 }
+\else
+\relax
+\fi
 
 \mode<presentation>
 % structure
