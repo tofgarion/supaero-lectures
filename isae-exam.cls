@@ -103,7 +103,7 @@
 % marks detail
 \RequirePackage{environ}
 \RequirePackage{colortbl}
-\RequirePackage{xcolor}
+\RequirePackage[hyperref,x11names]{xcolor}
 \RequirePackage{numprint}
 \RequirePackage{booktabs}
 
