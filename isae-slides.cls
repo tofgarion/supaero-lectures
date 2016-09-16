@@ -45,6 +45,9 @@
 \RequirePackage{atbegshi}
 \LoadClass{beamer}
 
+% for luatex
+\RequirePackage{ifluatex}
+
 % etex for more dimens
 \RequirePackage{etex}
 
@@ -66,6 +69,9 @@
 \fi
 
 % microtype for spacing
+\ifluatex
+\relax
+\else
 \RequirePackage[babel=true,kerning=true]{microtype}
 \SetExtraKerning%
     [ name = ttkerning,%
@@ -78,6 +84,7 @@
       context  = uml]%
     { encoding = {OT1,T1} }%
     { }%
+\fi
 
 % hyperref package for links
 \RequirePackage{hyperref}
