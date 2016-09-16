@@ -46,6 +46,9 @@
 \RequirePackage{fancyhdr}
 \LoadClass{exam}
 
+% for luatex
+\RequirePackage{ifluatex}
+
 % etex for more dimens
 \RequirePackage{etex}
 
@@ -71,6 +74,9 @@
 \fi
 
 % microtype for spacing
+\ifluatex
+\relax
+\else
 \RequirePackage[babel=true,kerning=true]{microtype}
 \SetExtraKerning%
     [ name = ttkerning,%
@@ -83,12 +89,13 @@
       context  = uml]%
     { encoding = {OT1,T1} }%
     { }%
+\fi
 
 % multirow for header
 \RequirePackage{multirow}
 
 % hyperref package for links
-\RequirePackage[pdfversion=1.7, pdftex, colorlinks, urlcolor=blue, pdfstartview=FitH, pdfhighlight={/N}]{hyperref}
+\RequirePackage[pdfversion=1.7, colorlinks, urlcolor=SteelBlue4, citecolor=Firebrick4, linkcolor=Firebrick4, pdfstartview=FitH, pdfhighlight={/N}]{hyperref}
 
 % bibliography with biblatex
 \ifx\@requirebiblatex\@empty
@@ -101,7 +108,11 @@
 \fi
 
 % graphics
+\ifluatex
+\RequirePackage[luatex]{graphicx}
+\else
 \RequirePackage[pdftex]{graphicx}
+\fi
 
 % CC license
 \ifx\@requirecc\@empty
