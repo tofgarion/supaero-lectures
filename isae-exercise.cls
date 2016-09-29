@@ -57,8 +57,14 @@
 \RequirePackage[hscale=0.85, vscale=0.90, top=40pt, includeheadfoot]{geometry}
 
 % fonts
+\ifluatex
+\RequirePackage{fontspec}
+\setmainfont{lmsans10-regular.otf}
+%\setsansfont{lmsans10-regular.otf}[Scale=MatchLowercase]
+\else
 \RequirePackage[T1]{fontenc}
 \RequirePackage{textcomp}
+\fi
 
 % babel for languages. Uses translator package for theorem etc. names.
 \RequirePackage[\@language]{babel}
@@ -109,7 +115,7 @@
 
 % graphics
 \ifluatex
-\RequirePackage[luatex]{graphicx}
+\RequirePackage{graphicx}
 \else
 \RequirePackage[pdftex]{graphicx}
 \fi
