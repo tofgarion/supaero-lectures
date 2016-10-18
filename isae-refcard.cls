@@ -4,7 +4,7 @@
 %% Mostly taken from article.cls and "Rolling your own Document Class:
 %% Using LaTeX to keep away from the Dark Side" by Peter Flynn
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{isae-refcard}[2012/09/20 v0.1 
+\ProvidesClass{isae-refcard}[2012/09/20 v0.1
                LaTeX document class for ISAE refcards]
 
 
@@ -33,8 +33,12 @@
 \DeclareOption*{\InputIfFileExists{\CurrentOption.sup}{}{%
     \PassOptionsToClass{\CurrentOption}{article}}}
 \ProcessOptions \relax
+\RequirePackage[hyperref,x11names]{xcolor}
 \RequirePackage{atbegshi}
 \LoadClass{article}
+
+% for luatex
+\RequirePackage{ifluatex}
 
 % etex for more dimens
 \RequirePackage{etex}
@@ -54,11 +58,14 @@
 \fi
 
 % microtype for spacing
+\ifluatex
+\relax
+\else
 \RequirePackage[babel=true,kerning=true]{microtype}
 \SetExtraKerning%
     [ name = ttkerning,%
       context  = french]%
-    { encoding = {OT1,T1}, 
+    { encoding = {OT1,T1},
       family = {ul9, tt*} }%
     { }%
 \SetExtraKerning%
@@ -66,9 +73,10 @@
       context  = uml]%
     { encoding = {OT1,T1} }%
     { }%
+\fi
 
 % hyperref package for links
-\RequirePackage[pdfversion=1.7, pdftex, colorlinks, urlcolor=blue, pdfstartview=FitH, pdfhighlight={/N}]{hyperref}
+\RequirePackage[pdfversion=1.7, colorlinks, urlcolor=SteelBlue4, citecolor=Firebrick4, linkcolor=Firebrick4, pdfstartview=FitH, pdfhighlight={/N}]{hyperref}
 
 % bibliography with biblatex
 \ifx\@requirebiblatex\@empty
@@ -81,7 +89,7 @@
 \fi
 
 % graphics
-\RequirePackage[pdftex]{graphicx}
+\RequirePackage{graphicx}
 
 % title with shorttitle
 \renewcommand\title{\@dblarg\mytitlecmd}
@@ -108,7 +116,7 @@
   \rfoot{\ifx\@requirecc\Large \module@internal\else%
     \begin{tikzpicture}%
       \node[rounded corners, draw=black, fill=black!20]%
-      {\includegraphics[width=0.015\textwidth]{cc.png}\quad% 
+      {\includegraphics[width=0.015\textwidth]{cc.png}\quad%
         \includegraphics[width=0.015\textwidth]{by.png}\quad%
         \includegraphics[width=0.015\textwidth]{nc.png}\quad%
         \includegraphics[width=0.015\textwidth]{sa.png}%
