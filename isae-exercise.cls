@@ -59,8 +59,12 @@
 % fonts
 \ifluatex
 \RequirePackage{fontspec}
-\setmainfont{lmsans10-regular.otf}
-%\setsansfont{lmsans10-regular.otf}[Scale=MatchLowercase]
+\setmainfont{texgyrepagella}
+\setsansfont{lmsans10-regular}[Scale=MatchLowercase]
+\setmonofont{Inconsolatazi4}[Scale=MatchLowercase]
+\RequirePackage{mathtools,amssymb}
+\RequirePackage{unicode-math}
+\setmathfont{Latin Modern Math}
 \else
 \RequirePackage[T1]{fontenc}
 \RequirePackage{textcomp}
@@ -251,8 +255,12 @@
 \pagestyle{headandfoot}
 
 % default font
+\ifluatex
+\relax
+\else
 \renewcommand\familydefault{cmss}
 \RequirePackage[cm]{sfmath}
+\fi
 
 % % redefine emph
 % \makeatletter
