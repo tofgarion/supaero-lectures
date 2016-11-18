@@ -1,10 +1,10 @@
 %% ISAE document class for exercises
-%% C. Garion, 2012
+%% C. Garion, 2012-2016
 %%
 %% Mostly taken from article.cls and "Rolling your own Document Class:
 %% Using LaTeX to keep away from the Dark Side" by Peter Flynn
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{isae-exercise}[2012/08/29 v0.1
+\ProvidesClass{isae-exercise}[2016/11/17 v0.2
                LaTeX document class for ISAE exercises]
 
 
@@ -63,7 +63,7 @@
 \RequirePackage{fontspec}
 \setmainfont{texgyrepagella}
 \setsansfont{lmsans10-regular}[Scale=MatchLowercase]
-\setmonofont{Inconsolatazi4}[Scale=MatchLowercase]
+\setmonofont{Inconsolatazi4}[Scale=0.8]
 \RequirePackage{mathtools,amssymb}
 \RequirePackage{unicode-math}
 \setmathfont{Latin Modern Math}
@@ -81,7 +81,11 @@
   \uselanguage{French}
   \languagepath{French}
   \deftranslation[to=French]{Audience}{Public}
+  \ifluatex
+  \relax
+  \else
   \RequirePackage{ae,aecompl,aeguill}
+  \fi
   \frenchbsetup{ItemLabels=\textendash}
 \fi
 
