@@ -1,10 +1,10 @@
 %% ISAE document class for refcards
-%% C. Garion, 2012
+%% C. Garion, 2012-2016
 %%
 %% Mostly taken from article.cls and "Rolling your own Document Class:
 %% Using LaTeX to keep away from the Dark Side" by Peter Flynn
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{isae-refcard}[2012/09/20 v0.1
+\ProvidesClass{isae-refcard}[2016/11/17 v0.2
                LaTeX document class for ISAE refcards]
 
 
@@ -64,10 +64,18 @@
 % babel for languages. Beamer uses translator package for theorem
 % etc. names.
 \RequirePackage[\@language]{babel}
+\RequirePackage{translator}
 \ifx\@requirefrench\@empty
-  \relax
+\relax
 \else
+  \uselanguage{French}
+  \languagepath{French}
+  \deftranslation[to=French]{Audience}{Public}
+  \ifluatex
+  \relax
+  \else
   \RequirePackage{ae,aecompl,aeguill}
+  \fi
   \frenchbsetup{ItemLabels=\textendash}
 \fi
 
