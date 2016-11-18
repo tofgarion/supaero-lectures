@@ -19,6 +19,8 @@
 \DeclareOption{biblatex}{\def\@requirebiblatex{true}}
 \def\@requirecc{}
 \DeclareOption{cc}{\def\@requirecc{true}}
+\def\@requireadvanced{}
+\DeclareOption{advanced}{\def\@requireadvanced{true}}
 
 \def\GITAbrHash{}
 \def\GITAuthorDate{}
@@ -214,6 +216,15 @@
     \tikz \node[rounded corners, draw=red!80, ultra thick, rotate=30]%
     {\Huge\bf \textcolor{red}{\texttt{Solution}}};
   \end{textblock}
+  \else
+    \ifx\@requireadvanced\@empty%
+    \relax%
+    \else%
+    \begin{textblock}{1}(1,0)%
+      \tikz \node[rounded corners, draw=red!80, ultra thick, rotate=30]%
+      {\Huge\bf \textcolor{red}{\texttt{Advanced}}};%
+    \end{textblock}%
+    \fi%
   \fi
   \noindent\begin{tabular}[t]{| l l | c |}
     \hline
