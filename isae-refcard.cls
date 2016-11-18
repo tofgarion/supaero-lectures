@@ -47,6 +47,20 @@
 % conf. below
 \RequirePackage[hscale=0.9, vscale=0.8, foot=4em]{geometry}
 
+% fonts
+\ifluatex
+\RequirePackage{fontspec}
+\setmainfont{texgyrepagella}
+\setsansfont{lmsans10-regular}[Scale=MatchLowercase]
+\setmonofont{Inconsolatazi4}[Scale=0.85]
+\RequirePackage{mathtools,amssymb}
+\RequirePackage{unicode-math}
+\setmathfont{Latin Modern Math}
+\else
+\RequirePackage[T1]{fontenc}
+\RequirePackage{textcomp}
+\fi
+
 % babel for languages. Beamer uses translator package for theorem
 % etc. names.
 \RequirePackage[\@language]{babel}
@@ -131,8 +145,12 @@
 \pagestyle{headandfoot}
 
 % default font
+\ifluatex
+\relax
+\else
 \renewcommand\familydefault{cmss}
 \RequirePackage[cm]{sfmath}
+\fi
 
 % no indentation
 \setlength{\parindent}{0in}
