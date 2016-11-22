@@ -52,7 +52,7 @@
 \RequirePackage{fontspec}
 \setmainfont{texgyrepagella}
 \setsansfont{lmsans10-regular}[Scale=MatchLowercase]
-\setmonofont{Inconsolatazi4}[Scale=0.9]
+\setmonofont{Fira Mono}[Scale=0.9]
 \RequirePackage{mathtools,amssymb}
 \RequirePackage{unicode-math}
 \setmathfont{Latin Modern Math}

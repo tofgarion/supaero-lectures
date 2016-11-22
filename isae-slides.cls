@@ -52,8 +52,13 @@
 \RequirePackage{etex}
 
 % fonts
+\ifluatex
+\RequirePackage{fontspec}
+\setmonofont{Fira Mono}[Scale=0.9]
+\else
 \RequirePackage[T1]{fontenc}
 \RequirePackage{textcomp}
+\fi
 
 % babel for languages. Beamer uses translator package for theorem
 % etc. names.
