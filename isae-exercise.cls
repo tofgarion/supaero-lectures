@@ -28,6 +28,7 @@
 
 \def\module@internal{INXXX}
 \newcommand{\module}[1]{\def\module@internal{#1}}
+\newcommand{\showmodule}{\module@internal}
 
 \def\public@internal{INXXX}
 \newcommand{\public}[1]{\def\public@internal{#1}}
