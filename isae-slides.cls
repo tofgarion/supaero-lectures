@@ -54,7 +54,7 @@
 % fonts
 \ifluatex
 \RequirePackage{fontspec}
-\setmonofont{Fira Mono}[Scale=0.9]
+\setmonofont{Fira Mono}[Scale=0.85]
 \else
 \RequirePackage[T1]{fontenc}
 \RequirePackage{textcomp}
