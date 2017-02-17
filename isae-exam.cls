@@ -53,12 +53,25 @@
 \RequirePackage{atbegshi}
 \LoadClass{exam}
 
+% for luatex
+\RequirePackage{ifluatex}
+
 % etex for more dimens
 \RequirePackage{etex}
 
 % fonts
+\ifluatex
+\RequirePackage{fontspec}
+\setmainfont{texgyrepagella}
+\setsansfont{lmsans10-regular}[Scale=MatchLowercase]
+\setmonofont{Fira Mono}[Scale=0.9]
+\RequirePackage{mathtools,amssymb}
+\RequirePackage{unicode-math}
+\setmathfont{Latin Modern Math}
+\else
 \RequirePackage[T1]{fontenc}
 \RequirePackage{textcomp}
+\fi
 
 % babel for languages. Uses translator package for theorem etc. names.
 \RequirePackage[\@language]{babel}
@@ -69,11 +82,18 @@
   \uselanguage{French}
   \languagepath{French}
   \deftranslation[to=French]{Audience}{Public}
+  \ifluatex
+  \relax
+  \else
   \RequirePackage{ae,aecompl,aeguill}
+  \fi
   \frenchbsetup{ItemLabels=\textendash}
 \fi
 
 % microtype for spacing
+\ifluatex
+\relax
+\else
 \RequirePackage[babel=true,kerning=true]{microtype}
 \SetExtraKerning%
     [ name = ttkerning,%
@@ -86,9 +106,10 @@
       context  = uml]%
     { encoding = {OT1,T1} }%
     { }%
+\fi
 
 % hyperref package for links
-\RequirePackage[pdfversion=1.7, pdftex, colorlinks, urlcolor=blue, pdfstartview=FitH, pdfhighlight={/N}]{hyperref}
+\RequirePackage[pdfversion=1.7, colorlinks, urlcolor=SteelBlue4, citecolor=Firebrick4, linkcolor=Firebrick4, pdfstartview=FitH, pdfhighlight={/N}]{hyperref}
 
 % bibliography with biblatex
 \ifx\@requirebiblatex\@empty
@@ -98,6 +119,13 @@
 \RequirePackage[
   style=numeric%
   ]{biblatex}
+\fi
+
+% graphics
+\ifluatex
+\RequirePackage{graphicx}
+\else
+\RequirePackage[pdftex]{graphicx}
 \fi
 
 % marks detail
@@ -224,7 +252,6 @@
 }
 
 % headers and titlepage
-\RequirePackage{graphicx}
 \RequirePackage[absolute]{textpos}
 \setlength{\TPHorizModule}{0.5\textwidth}
 \setlength{\TPVertModule}{0.1\textheight}
@@ -344,8 +371,12 @@
 \RequirePackage{mathtools}
 
 % default font
+\ifluatex
+\relax
+\else
 \renewcommand\familydefault{cmss}
 \RequirePackage[cm]{sfmath}
+\fi
 
 % no indentation
 \setlength{\parindent}{0in}
