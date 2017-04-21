@@ -258,7 +258,8 @@
 \newcommand{\dvs}{\vspace{1em}}
 
 \RequirePackage{pifont}
-\newcommand{\frametitleexercise}[1]{%
-  \frametitle{\hbox{\rlap{\parbox{\textwidth}{\raggedright #1}} ~
-      \rlap{\parbox{0.9\paperwidth}{\raggedleft \ding{46}}}}}
+\newcommand{\frametitleexercise}[2][0]{%
+  \frametitle{\hbox{\rlap{\parbox{\textwidth}{\raggedright #2}} ~
+      \rlap{\parbox{0.9\paperwidth}{\raggedleft
+          \onslide<all:#1>{\fontspec{Symbola}^^^^231b}~\ding{46}}}}}
 }
