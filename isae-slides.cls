@@ -254,8 +254,8 @@
 % misc. commands and def
 \newcommand{\s}{\onslide<+->}
 \newcommand{\p}{\pause}
-\newcommand{\vs}{\vspace{0.25cm}}
-\newcommand{\dvs}{\vspace{0.5cm}}
+\newcommand{\vs}{\vspace{1em}}
+\newcommand{\dvs}{\vspace{1em}}
 
 \RequirePackage{pifont}
 \newcommand{\frametitleexercise}[1]{%
