@@ -197,7 +197,29 @@
   \end{beamercolorbox}
 }
 }
-\else\relax\fi
+\else
+\mode<handout>{
+\setbeamertemplate{frametitle}
+{
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \begin{beamergradientcolorbox}[sep=0.3cm,wd=\the\@tempdima]{frametitle}
+    \usebeamerfont{frametitle}
+    \vbox{}\vskip-1ex%
+    \strut\insertframetitle\strut\par
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \vskip-1ex%
+  \end{beamergradientcolorbox}
+}
+}
+\fi
 
 \mode<presentation>
 
