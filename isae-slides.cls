@@ -261,5 +261,5 @@
 \newcommand{\frametitleexercise}[2][0]{%
   \frametitle{\hbox{\rlap{\parbox{\textwidth}{\raggedright #2}} ~
       \rlap{\parbox{0.9\paperwidth}{\raggedleft
-          \onslide<all:#1>{\fontspec{Symbola}^^^^231b}~\ding{46}}}}}
+          \onslide<all:#1|handout:0>{\fontspec{Symbola}^^^^231b}~\ding{46}}}}}
 }
