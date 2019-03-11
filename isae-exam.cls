@@ -26,6 +26,8 @@
 \DeclareOption{gradetable}{\def\@gradetable{true}}
 \def\@requirecc{}
 \DeclareOption{cc}{\def\@requirecc{true}}
+\def\@machinename{}
+\DeclareOption{machinename}{\def\@machinename{true}}
 
 \newif\ifmarksdetail
 \marksdetailfalse
@@ -262,6 +264,7 @@
 \deftranslation[to=French]{Group}{Groupe}
 \deftranslation[to=French]{Comments}{Commentaires \'eventuels}
 \deftranslation[to=French]{Grade details}{Notation d\'etaill\'ee}
+\deftranslation[to=French]{Machine}{Machine}
 
 \header{\module@internal}{\shorttitle, question \thequestion\ifprintanswers { }- solution\fi}{\@date}
 \headrule
@@ -322,6 +325,15 @@
   \vspace{11pt}
 
   \makebox[\textwidth]{\translate{Group}:\enspace\hrulefill}
+
+  \if\@machinename\empty
+    \relax
+  \else
+  {\vspace{11pt}
+
+    \makebox[\textwidth]{\translate{Machine}:\enspace\hrulefill}
+  }
+  \fi
   }
 
   \vskip 10pt
