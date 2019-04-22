@@ -157,7 +157,7 @@
 }
 \AtBeginSection[]
 {
-  \begin{frame}
+  \begin{frame}[shrink]
     \frametitle{\myoutline\ifx\beamer@partname\undefined\relax\else \mypartname ~ \insertpartnumber ~- \insertshortpart\fi}
 
     \tableofcontents[sectionstyle=show/shaded, subsectionstyle=show/show/hide]
@@ -165,7 +165,7 @@
 }
 \AtBeginSubsection[]
 {
-  \begin{frame}
+  \begin{frame}[shrink]
     \frametitle{\myoutline\ifx\beamer@partname\undefined\relax\else \mypartname ~ \insertpartnumber ~- \insertshortpart\fi}
 
     \tableofcontents[sectionstyle=show/shaded, subsectionstyle=show/shaded/hide]
